@@ -1,4 +1,4 @@
-# Downtime Reduction — Inuka Hackathon Stage 1 Starter Kit
+# Downtime Reduction — Inuka Hackathon Stage 1 
 
 **Domain B, Problem 4:** Cut operational downtime by integrating tested schedulers/APIs into
 existing maintenance workflows with performance monitoring.
