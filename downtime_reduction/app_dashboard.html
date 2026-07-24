@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KPC Downtime Reduction - Live App</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --bg: #f7f6f2; --card: #ffffff; --border: #e1e0d9;
+    --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #898781;
+    --accent: #185fa5; --accent-bg: #e6f1fb;
+    --success: #27500a; --success-bg: #eaf3de;
+    --amber: #633806; --amber-bg: #faeeda;
+    --red: #791f1f; --red-bg: #fcebeb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a19; --card: #232322; --border: #383835;
+      --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
+      --accent: #85b7eb; --accent-bg: #042c53;
+      --success: #c0dd97; --success-bg: #173404;
+      --amber: #fac775; --amber-bg: #412402;
+      --red: #f7c1c1; --red-bg: #501313;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 28px; background: var(--bg); color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 4px; font-weight: 600; }
+  h1 { font-size: 23px; font-weight: 700; margin: 0 0 6px; }
+  .subtitle { font-size: 14px; color: var(--text-secondary); margin: 0 0 20px; }
+
+  .controls { display: flex; gap: 10px; margin-bottom: 22px; align-items: center; flex-wrap: wrap; }
+  button.action-btn {
+    background: var(--accent); color: white; border: none; border-radius: 8px;
+    padding: 10px 18px; font-size: 13.5px; font-weight: 600; cursor: pointer;
+  }
+  button.action-btn:disabled { opacity: 0.45; cursor: default; }
+  button.action-btn.secondary { background: var(--card); color: var(--text-primary); border: 0.5px solid var(--border); }
+  .status-pill { font-size: 12.5px; color: var(--text-secondary); }
+  .status-pill.live::before { content: "●"; color: var(--success); margin-right: 5px; }
+
+  .metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+  .metric-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 14px; padding: 16px; }
+  .metric-label { font-size: 12.5px; color: var(--text-secondary); margin: 0 0 6px; }
+  .metric-value { font-size: 26px; font-weight: 700; margin: 0; }
+  .metric-value.success { color: var(--success); }
+  .metric-value.accent { color: var(--accent); }
+  .metric-value.muted { color: var(--text-muted); font-size: 18px; }
+
+  .tabs { display: flex; gap: 4px; margin-bottom: 18px; border-bottom: 0.5px solid var(--border); }
+  .tab { padding: 8px 16px; font-size: 13.5px; font-weight: 600; color: var(--text-secondary); cursor: pointer; border-bottom: 2px solid transparent; }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  section { background: var(--card); border: 0.5px solid var(--border); border-radius: 14px; padding: 20px 22px; margin-bottom: 16px; }
+  h2 { font-size: 15px; font-weight: 700; margin: 0 0 14px; }
+
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .check-row { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 4px 0; }
+  .check-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .check-dot.pass { background: var(--success); }
+  .check-dot.fail { background: var(--red); }
+
+  .asset-list { display: flex; flex-direction: column; gap: 8px; }
+  .asset-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border: 0.5px solid var(--border); border-radius: 10px; }
+  .asset-name { font-weight: 700; font-size: 13.5px; }
+  .asset-detail { font-size: 12px; color: var(--text-secondary); }
+  .asset-bar-track { width: 140px; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .asset-bar-fill { height: 100%; background: var(--accent); }
+
+  .empty-state { text-align: center; padding: 40px 20px; color: var(--text-secondary); font-size: 13.5px; }
+
+  .fleet-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .fleet-group-title { font-size: 12px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 10px; }
+  .fleet-item { display: flex; align-items: center; justify-content: space-between; font-size: 13.5px; padding: 6px 0; border-top: 0.5px solid var(--border); }
+  .fleet-item:first-of-type { border-top: none; }
+  .fleet-item b { font-weight: 700; }
+
+  .chart-box { position: relative; width: 100%; height: 260px; margin-bottom: 8px; }
+  .legend { display: flex; gap: 16px; font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+  .legend span { display: flex; align-items: center; gap: 4px; }
+  .swatch { width: 10px; height: 10px; border-radius: 2px; }
+  .live-stats { display: flex; gap: 20px; font-size: 12.5px; color: var(--text-secondary); margin-bottom: 10px; }
+  .live-stats b { color: var(--text-primary); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Inuka hackathon &middot; stage 1 &middot; domain b, problem 4</p>
+  <h1>Downtime reduction — live app</h1>
+  <p class="subtitle">Click the buttons below — this runs the real pipeline and scheduler against live endpoints, not pre-recorded data</p>
+
+  <div class="controls">
+    <button class="action-btn" id="runPipelineBtn">Run pipeline now</button>
+    <button class="action-btn secondary" id="runSchedulerBtn" disabled>Run scheduler now</button>
+    <span class="status-pill" id="statusPill">Idle — run the pipeline to begin</span>
+  </div>
+
+  <div class="metrics" id="metrics">
+    <div class="metric-card"><p class="metric-label">Assets monitored</p><p class="metric-value muted">–</p></div>
+    <div class="metric-card"><p class="metric-label">Quality gate</p><p class="metric-value muted">–</p></div>
+    <div class="metric-card"><p class="metric-label">Chronic assets</p><p class="metric-value muted">–</p></div>
+    <div class="metric-card"><p class="metric-label">Tickets created</p><p class="metric-value muted">–</p></div>
+    <div class="metric-card"><p class="metric-label">Avg latency</p><p class="metric-value muted">–</p></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="fleet">Fleet overview</div>
+    <div class="tab" data-tab="quality">Quality gate</div>
+    <div class="tab" data-tab="insights">Chronic assets</div>
+    <div class="tab" data-tab="scheduler">Scheduler performance</div>
+  </div>
+
+  <div class="panel active" id="panel-fleet">
+    <section>
+      <h2>Fleet &amp; work order overview</h2>
+      <div id="fleetContent"><div class="empty-state">Run the pipeline to see fleet composition.</div></div>
+    </section>
+  </div>
+
+  <div class="panel" id="panel-quality">
+    <section>
+      <h2 id="quality-heading">Data quality gate</h2>
+      <div id="checkGrid"><div class="empty-state">Run the pipeline to see quality gate results.</div></div>
+    </section>
+  </div>
+
+  <div class="panel" id="panel-insights">
+    <section>
+      <h2>Chronic-failure assets</h2>
+      <div class="asset-list" id="assetList"><div class="empty-state">Run the pipeline to see asset insights.</div></div>
+    </section>
+  </div>
+
+  <div class="panel" id="panel-scheduler">
+    <section>
+      <h2>Scheduler run</h2>
+      <div class="live-stats">
+        <span>Tickets: <b id="liveCount">–</b></span>
+        <span>Success rate: <b id="liveSuccess">–</b></span>
+        <span>Avg latency: <b id="liveLatency">–</b></span>
+        <span>Retries: <b id="liveRetries">–</b></span>
+      </div>
+      <div class="chart-box"><canvas id="latencyChart" role="img" aria-label="Latency per ticket creation call"></canvas></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:#2a78d6"></span>Latency (ms)</span>
+        <span><span class="swatch" style="background:#eb6834"></span>Needed a retry</span>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+const labels = {
+  no_null_asset_id: 'No null asset IDs',
+  no_null_reported_time: 'No null report timestamps',
+  work_order_id_unique: 'Work order IDs unique',
+  status_in_valid_set: 'Status values in valid set',
+  zone_in_valid_set: 'Zone values in valid set',
+  downtime_non_negative: 'Downtime hours non-negative',
+  downtime_within_bounds: 'Downtime hours within bounds',
+  completed_time_after_reported: 'Completion after report time',
+  unknown_status_rate_below_5pct: 'Unknown-status rate below 5%',
+  technician_double_booking_rate_below_2pct: 'Technician double-booking rate below 2%',
+};
+
+const runPipelineBtn = document.getElementById('runPipelineBtn');
+const runSchedulerBtn = document.getElementById('runSchedulerBtn');
+const statusPill = document.getElementById('statusPill');
+
+function setMetric(idx, value, cls) {
+  const cards = document.querySelectorAll('.metric-card .metric-value');
+  cards[idx].textContent = value;
+  cards[idx].className = 'metric-value ' + (cls || '');
+}
+
+runPipelineBtn.addEventListener('click', async () => {
+  runPipelineBtn.disabled = true;
+  runPipelineBtn.textContent = 'Running pipeline...';
+  statusPill.textContent = 'Extracting, cleaning, and quality-checking...';
+  statusPill.className = 'status-pill';
+
+  try {
+    const res = await fetch('/api/pipeline/run', { method: 'POST' });
+    const data = await res.json();
+    renderQuality(data.quality_report);
+    renderInsights(data.insights);
+    renderFleet(data.fleet_overview);
+    setMetric(0, data.fleet_overview.total_assets, '');
+    setMetric(1, data.quality_report.passed + '/' + data.quality_report.total, 'success');
+    setMetric(2, data.insights.chronic_assets_found + '/' + data.insights.total_assets_analyzed, '');
+    statusPill.textContent = 'Pipeline complete — ' + data.rows_cleaned + ' rows cleaned. Ready to run scheduler.';
+    statusPill.classList.add('live');
+    runSchedulerBtn.disabled = false;
+  } catch (e) {
+    statusPill.textContent = 'Pipeline run failed — check the server logs.';
+  } finally {
+    runPipelineBtn.disabled = false;
+    runPipelineBtn.textContent = 'Run pipeline now';
+  }
+});
+
+runSchedulerBtn.addEventListener('click', async () => {
+  runSchedulerBtn.disabled = true;
+  runSchedulerBtn.textContent = 'Running scheduler...';
+  statusPill.textContent = 'Creating tickets via the ticketing API...';
+
+  try {
+    const res = await fetch('/api/scheduler/run', { method: 'POST' });
+    const data = await res.json();
+    setMetric(3, data.succeeded + '/' + data.total_candidates, 'accent');
+    setMetric(4, data.avg_latency_ms + 'ms', 'accent');
+    statusPill.textContent = 'Scheduler complete — ' + data.succeeded + ' tickets created live.';
+    replayLatency(data.tickets);
+    document.querySelector('[data-tab="scheduler"]').click();
+  } catch (e) {
+    statusPill.textContent = 'Scheduler run failed — check the server logs.';
+  } finally {
+    runSchedulerBtn.disabled = false;
+    runSchedulerBtn.textContent = 'Run scheduler now';
+  }
+});
+
+function renderFleet(f) {
+  const typeItems = Object.entries(f.assets_by_type).map(([k, v]) =>
+    '<div class="fleet-item"><span>' + k + 's</span><b>' + v + '</b></div>').join('');
+  const zoneItems = Object.entries(f.assets_by_zone).map(([k, v]) =>
+    '<div class="fleet-item"><span>' + k + '</span><b>' + v + '</b></div>').join('');
+  const statusItems = Object.entries(f.work_orders_by_status).map(([k, v]) =>
+    '<div class="fleet-item"><span>' + k + '</span><b>' + v + '</b></div>').join('');
+
+  document.getElementById('fleetContent').innerHTML =
+    '<div class="fleet-grid">' +
+      '<div><p class="fleet-group-title">Assets by type</p>' + typeItems + '</div>' +
+      '<div><p class="fleet-group-title">Assets by zone</p>' + zoneItems + '</div>' +
+      '<div><p class="fleet-group-title">Work orders by status</p>' + statusItems + '</div>' +
+    '</div>' +
+    '<div style="margin-top:16px; padding-top:14px; border-top:0.5px solid var(--border); display:flex; gap:24px; font-size:13px; color:var(--text-secondary);">' +
+      '<span>Total work orders: <b style="color:var(--text-primary)">' + f.total_work_orders + '</b></span>' +
+      '<span>Open/overdue right now: <b style="color:var(--text-primary)">' + f.open_or_overdue_count + '</b></span>' +
+      '<span>Unassigned technician: <b style="color:var(--text-primary)">' + f.unassigned_technician_count + '</b></span>' +
+    '</div>';
+}
+
+function renderQuality(qr) {
+  document.getElementById('quality-heading').textContent = 'Data quality gate — ' + qr.passed + '/' + qr.total + ' checks passing';
+  document.getElementById('checkGrid').innerHTML = '<div class="check-grid">' + Object.entries(qr.checks).map(([key, passed]) =>
+    '<div class="check-row"><span class="check-dot ' + (passed ? 'pass' : 'fail') + '"></span><span>' + (labels[key] || key) + '</span></div>'
+  ).join('') + '</div>';
+}
+
+function renderInsights(insights) {
+  if (!insights.chronic_assets.length) {
+    document.getElementById('assetList').innerHTML = '<div class="empty-state">No chronic assets found in this run.</div>';
+    return;
+  }
+  const maxCount = Math.max(...insights.chronic_assets.map(a => a.ticket_count));
+  document.getElementById('assetList').innerHTML = insights.chronic_assets.map(a =>
+    '<div class="asset-row">' +
+      '<div><div class="asset-name">' + a.asset_id + '</div><div class="asset-detail">' + a.zone + ' \u00b7 ' + a.asset_type + ' \u00b7 ' + a.multiplier_vs_fleet_average + '\u00d7 fleet average</div></div>' +
+      '<div style="display:flex; align-items:center; gap:10px;"><div class="asset-bar-track"><div class="asset-bar-fill" style="width:' + (a.ticket_count / maxCount * 100) + '%"></div></div><span style="font-size:13px; font-weight:700; min-width:24px; text-align:right;">' + a.ticket_count + '</span></div>' +
+    '</div>'
+  ).join('');
+}
+
+let latencyChart;
+function initChart() {
+  latencyChart = new Chart(document.getElementById('latencyChart'), {
+    type: 'line',
+    data: { labels: [], datasets: [{ data: [], borderColor: '#2a78d6', backgroundColor: 'rgba(42,120,214,0.08)', fill: true, tension: 0.2, pointRadius: (ctx) => ctx.raw && ctx.raw.retry ? 5 : 2, pointBackgroundColor: (ctx) => ctx.raw && ctx.raw.retry ? '#eb6834' : '#2a78d6', borderWidth: 2 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { title: { display: true, text: 'ms' } }, x: { ticks: { display: false } } }
+    }
+  });
+}
+initChart();
+
+function replayLatency(tickets) {
+  latencyChart.data.labels = [];
+  latencyChart.data.datasets[0].data = [];
+  latencyChart.update();
+
+  let i = 0, successCount = 0, retryCount = 0, latencySum = 0;
+  const batchSize = 4;
+
+  function step() {
+    const end = Math.min(i + batchSize, tickets.length);
+    for (; i < end; i++) {
+      const t = tickets[i];
+      latencyChart.data.labels.push(i + 1);
+      latencyChart.data.datasets[0].data.push({ x: i + 1, y: t.latency_ms, retry: t.attempts > 1 });
+      if (t.success) successCount++;
+      if (t.attempts > 1) retryCount++;
+      latencySum += t.latency_ms;
+    }
+    latencyChart.update('none');
+    document.getElementById('liveCount').textContent = i;
+    document.getElementById('liveSuccess').textContent = Math.round(successCount / i * 100) + '%';
+    document.getElementById('liveLatency').textContent = Math.round(latencySum / i) + 'ms';
+    document.getElementById('liveRetries').textContent = retryCount;
+    if (i < tickets.length) {
+      requestAnimationFrame(() => setTimeout(step, 15));
+    }
+  }
+  step();
+}
+</script>
+</body>
+</html>
