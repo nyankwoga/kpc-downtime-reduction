@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+maintenance.db
+*.log
+.env
+api.log
+.scorecard.html/
+.interactive_dashboard/
+.app_dashboard/

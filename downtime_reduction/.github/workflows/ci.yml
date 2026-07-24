@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test-and-quality-gate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: pytest tests/ -v
+
+      - name: Generate demo data (if not already present)
+        run: |
+          if [ ! -f raw_work_orders.csv ]; then python generate_data.py; fi
+
+      - name: Run ETL pipeline + data quality gate
+        run: python pipeline.py
+
+      - name: Fail build if quality gate did not pass
+        run: |
+          python -c "
+          import json
+          report = json.load(open('quality_report.json'))
+          print(json.dumps(report, indent=2))
+          if report['gate_status'] != 'PASS':
+              raise SystemExit('Data quality gate failed -- blocking build')
+          "
