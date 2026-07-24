@@ -1,0 +1,85 @@
+# Downtime Reduction — Inuka Hackathon Stage 1 Starter Kit
+
+**Domain B, Problem 4:** Cut operational downtime by integrating tested schedulers/APIs into
+existing maintenance workflows with performance monitoring.
+
+## What's in here
+
+```
+generate_data.py          simulates messy raw KPC maintenance work orders
+etl/
+  extract.py               reads raw data
+  transform.py              cleans it (dates, statuses, duplicates, impossible values)
+  load.py                   idempotent load into SQLite
+  quality_checks.py         9-point data quality gate
+pipeline.py                orchestrates extract -> transform -> quality gate -> load
+mock_ticketing_api.py      FastAPI mock of KPC's ticketing system (standing in until real access)
+scheduler.py               Cron-style job: reads clean data, creates tickets via the API,
+                            logs performance (latency, retries, success rate)
+tests/test_pipeline.py     9 unit tests covering the cleaning + quality gate logic
+.github/workflows/ci.yml   runs tests + pipeline + quality gate on every push
+memo.md                    one-page problem-framing memo (Stage 1 deliverable)
+requirements.txt
+```
+
+## Quick start
+
+```bash
+pip install -r requirements.txt
+
+# 1. generate the messy raw data (or swap in a real KPC export with the same columns)
+python generate_data.py
+
+# 2. run the ETL pipeline: cleans data, runs the quality gate, loads maintenance.db
+python pipeline.py
+
+# 3. run tests
+pytest tests/ -v
+
+# 4. start the mock ticketing API (separate terminal / background process)
+uvicorn mock_ticketing_api:app --port 8000
+
+# 5. run the scheduler against it
+python scheduler.py
+```
+
+After step 5, check `monitoring_log.csv` — this is your performance-monitoring evidence:
+every ticket-creation attempt with latency, retry count, and outcome.
+
+## What each deliverable maps to (Stage 1 rubric)
+
+| Rubric ask | Where it lives |
+|---|---|
+| Clean, documented, automated ETL foundation | `pipeline.py` + `etl/` |
+| Version-controlled repo with CI + data-quality gates | `.github/workflows/ci.yml` + `etl/quality_checks.py` (10 checks) |
+| One-page problem-framing memo | `memo.md` (source) / `memo.pdf` (polished, submit this one) |
+| 5-minute pitch | build from: problem (memo) -> pipeline demo -> scheduler run -> `scorecard.html` as your visual |
+| Relevance to KPC's specific problem | `etl/insights.py` — chronic-failure asset detection, technician double-booking detection (not generic data-quality checks, genuine operational findings) |
+
+`scorecard.html` is a standalone, self-contained visual summary of all of the above — open it in
+any browser or screenshot it straight into your pitch deck.
+
+## Results on the simulated data (sanity check)
+
+- Pipeline: 615 raw rows -> 600 cleaned rows (15 duplicates removed, 2 impossible timestamps
+  corrected) -> **9/9 quality checks passing**
+- Scheduler: 273 open/overdue work orders processed -> **273/273 tickets created** (100%
+  eventual success via retry logic), average latency **176.8ms**, 18 calls needed a retry
+  (the mock API simulates a 5% transient failure rate to give the monitoring something real to
+  catch)
+
+## Next steps toward Stage 2 (35%, due 21 August 2026)
+
+- Swap the mock ticketing API for real KPC system access if/when available
+- Add a predictive layer: which assets are *likely* to need a ticket soon (not just reactive
+  triggering on already-overdue work orders)
+- Turn `monitoring_log.csv` into a dashboard (Streamlit or similar) showing downtime-hours-saved
+  trend over time — this becomes your Stage 2/3 ROI evidence
+
+## Notes
+
+- `raw_work_orders.csv` is intentionally messy (mixed date formats, inconsistent status
+  strings, missing technicians, a few data-entry errors) — this is what Stage 1 explicitly
+  wants you to demonstrate cleaning, not a shortcut to avoid.
+- `maintenance.db`, `*.log`, and `monitoring_log.csv` are gitignored since they're generated
+  artifacts, not source — regenerate them by re-running the pipeline/scheduler.
