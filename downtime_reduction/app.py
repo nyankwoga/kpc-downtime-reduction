@@ -70,8 +70,9 @@ NOTIFICATIONS: list[dict] = []
 
 
 # ---------------------------------------------------------------
-# Ticketing API (same behavior as mock_ticketing_api.py, now
-# embedded so the scheduler can call it in-process)
+# Built-in Ticketing API
+# Works like mock_ticketing_api.py but is included here so the
+# scheduler can create tickets without running a separate service.
 # ---------------------------------------------------------------
 class TicketCreate(BaseModel):
     asset_id: str
@@ -103,8 +104,10 @@ def list_tickets():
 
 
 # ---------------------------------------------------------------
-# Live pipeline endpoint
+# Run the ETL pipeline, process the latest work order data,
+# and return the updated quality report, insights, and fleet summary.
 # ---------------------------------------------------------------
+
 @app.post("/api/pipeline/run")
 def run_pipeline_live():
     global LATEST_QUALITY_REPORT, LATEST_INSIGHTS, LATEST_CLEAN_DF
@@ -144,9 +147,9 @@ def pipeline_status():
 
 
 # ---------------------------------------------------------------
-# Equipment, maintenance, and technician query endpoints
-# (read the same cleaned data the pipeline already produced --
-# no re-computation, just exposing what's already there)
+# Equipment, maintenance, and technician API endpoints
+# Use the latest cleaned data from the ETL pipeline without
+# running the pipeline again.
 # ---------------------------------------------------------------
 def _require_pipeline_run():
     if LATEST_CLEAN_DF is None:
@@ -206,10 +209,12 @@ def list_technicians():
 
 
 # ---------------------------------------------------------------
-# Notifications: fired automatically for high-priority tickets
-# created by the scheduler (see run_scheduler_live below), plus a
-# manual trigger endpoint for testing/demo purposes.
+# Notification endpoints
+# Automatically send notifications for high-priority tickets
+# created by the scheduler, with an option to send test
+# notifications manually.
 # ---------------------------------------------------------------
+
 class NotifyRequest(BaseModel):
     asset_id: str
     zone: str
@@ -236,8 +241,14 @@ def list_notifications():
 
 
 # ---------------------------------------------------------------
-# Live scheduler endpoint
+# Scheduler endpoints
+# Create maintenance tickets for open or overdue work orders,
+# send notifications for high-priority tickets, and return the
+# latest scheduler results.
 # ---------------------------------------------------------------
+
+# Set the ticket priority based on work order status and SLA
+
 def _decide_priority(row: dict) -> str:
     if row["status"] == "Overdue":
         return "high"
@@ -300,19 +311,22 @@ def run_scheduler_live():
         "avg_latency_ms": avg_latency, "tickets": results,
     }
 
+# Return the latest scheduler run results
+
 
 @app.get("/api/scheduler/latest")
 def scheduler_latest():
     return {"tickets": MONITORING_LOG}
 
-
+# Check that the API is running and return basic system status
+@app.get("/api/health")
 @app.get("/api/health")
 def health():
     return {"status": "ok", "ticket_count": len(TICKETS)}
 
 
 # ---------------------------------------------------------------
-# Serve the dashboard UI at "/"
+# Load and display the dashboard home page at "/"
 # ---------------------------------------------------------------
 @app.get("/", response_class=HTMLResponse)
 def dashboard():

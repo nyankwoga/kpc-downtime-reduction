@@ -1,4 +1,9 @@
-"""build_memo_pdf.py — renders memo.md content as a polished one-page PDF.
+"""
+Generate a professional one-page PDF version of the project memo.
+
+The script formats the project summary into a clean report that can
+be shared during presentations or submitted as part of the hackathon
+deliverables.
 
 Run: python build_memo_pdf.py
 Output: memo.pdf
@@ -11,11 +16,17 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_LEFT
 
+# Create the styles used throughout the PDF report
+
 styles = getSampleStyleSheet()
 
+
+# Define the colours used to keep the report consistent
 INK = HexColor("#1a1a1a")
 ACCENT = HexColor("#185fa5")
 MUTED = HexColor("#52514e")
+
+# Define the text styles for headings, body text, and labels
 
 title_style = ParagraphStyle("TitleStyle", parent=styles["Title"], fontSize=17, leading=21,
                               textColor=INK, spaceAfter=2, alignment=TA_LEFT)
@@ -27,14 +38,22 @@ body_style = ParagraphStyle("BodyStyle", parent=styles["Normal"], fontSize=9.3, 
                              textColor=INK, spaceAfter=6)
 bold_label = ParagraphStyle("BoldLabel", parent=body_style, fontName="Helvetica-Bold")
 
+
+# Configure the PDF page layout and margins
+
+
 doc = SimpleDocTemplate(
     "memo.pdf", pagesize=letter,
     topMargin=0.55 * inch, bottomMargin=0.5 * inch,
     leftMargin=0.65 * inch, rightMargin=0.65 * inch,
 )
 
+
+# Store all report sections before generating the PDF
+
 story = []
 
+# Add the report title and project details
 story.append(Paragraph("Problem-Framing Memo: Downtime Reduction Through Scheduler/API Integration", title_style))
 story.append(Paragraph(
     "Domain B — Predictive Maintenance &amp; Equipment Reliability &nbsp;|&nbsp; Problem 4: Downtime Reduction "
@@ -42,6 +61,8 @@ story.append(Paragraph(
     subtitle_style
 ))
 story.append(HRFlowable(width="100%", thickness=0.75, color=HexColor("#d8d7d0"), spaceAfter=6))
+
+# Explain the business problem the project is solving
 
 story.append(Paragraph("The KPC Problem", h2_style))
 story.append(Paragraph(
@@ -53,7 +74,7 @@ story.append(Paragraph(
     "asks us to close that gap with automation, and prove the automation itself is reliable.",
     body_style
 ))
-
+# Summarise the key findings from the cleaned maintenance data
 story.append(Paragraph("What the Data Already Tells Us", h2_style))
 story.append(Paragraph(
     "Our Stage 1 pipeline cleaned 600 work orders across 24 pump/valve assets in three depot zones "
@@ -63,6 +84,7 @@ story.append(Paragraph(
     body_style
 ))
 
+# Create a table highlighting the most important operational findings
 findings_data = [
     ["Finding", "Result", "Why it matters"],
     ["Chronic-failure assets", "6 of 24 assets (25%) at\n\u2265 1.2\u00d7 fleet-average ticket volume",
@@ -71,6 +93,9 @@ findings_data = [
      "Direct cause of avoidable\ndispatch delay"],
 ]
 findings_table = Table(findings_data, colWidths=[1.75 * inch, 2.1 * inch, 2.1 * inch])
+
+# Apply formatting to improve readability of the findings table
+
 findings_table.setStyle(TableStyle([
     ("BACKGROUND", (0, 0), (-1, 0), HexColor("#f0efe9")),
     ("TEXTCOLOR", (0, 0), (-1, 0), INK),
@@ -85,6 +110,8 @@ findings_table.setStyle(TableStyle([
 ]))
 story.append(findings_table)
 story.append(Spacer(1, 8))
+
+# Describe how the solution was designed and implemented
 
 story.append(Paragraph("Our Approach", h2_style))
 story.append(Paragraph(
@@ -107,6 +134,9 @@ story.append(Paragraph(
     body_style
 ))
 
+
+# Explain the value the solution provides to the business
+
 story.append(Paragraph("Why This Matters", h2_style))
 story.append(Paragraph(
     "If scheduler-driven ticket creation replaces manual reporting even partially, KPC gains an auditable, "
@@ -114,6 +144,9 @@ story.append(Paragraph(
     "reduce, downtime hours with real evidence instead of estimates.",
     body_style
 ))
+
+
+# Generate the final PDF report
 
 doc.build(story)
 print("memo.pdf built")

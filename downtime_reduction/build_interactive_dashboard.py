@@ -6,14 +6,23 @@ Run after export_demo_data.py (or just re-run this, it calls export first).
 
 import json
 import subprocess
-
+# Export the latest dashboard data before building the HTML page
 subprocess.run(["python3", "export_demo_data.py"], check=True)
 
+
+# Load the exported dashboard data
 with open("dashboard_data.json", encoding="utf-8") as f:
     data = json.load(f)
 
+
+
+# Convert the data into JSON so it can be embedded in the dashboard
 data_json = json.dumps(data)
 
+
+# HTML template for the interactive dashboard.
+# The exported data is inserted directly into this page so the
+# dashboard can run as a single self-contained file.
 HTML = r"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +30,8 @@ HTML = r"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Downtime Reduction — Live Pipeline Demo</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
+
 <style>
   :root {
     --bg: #f7f6f2; --card: #ffffff; --border: #e1e0d9;
