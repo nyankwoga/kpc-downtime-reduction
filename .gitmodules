@@ -1,0 +1,3 @@
+[submodule "maintainnexusai"]
+	path = maintainnexusai
+	url = https://github.com/umarndungo/maintainnexusai
