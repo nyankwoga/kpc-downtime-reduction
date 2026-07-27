@@ -91,6 +91,10 @@
 </style>
 </head>
 <body>
+
+
+  <!-- Dashboard header showing the project title and user controls -->
+
 <div class="wrap">
   <p class="eyebrow">Inuka hackathon &middot; stage 1 &middot; domain b, problem 4</p>
   <h1>Downtime reduction — live app</h1>
@@ -157,6 +161,9 @@
 </div>
 
 <script>
+
+  // Handle switching between dashboard tabs
+
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -189,6 +196,8 @@ function setMetric(idx, value, cls) {
   cards[idx].className = 'metric-value ' + (cls || '');
 }
 
+// Run the ETL pipeline and refresh the dashboard with the latest results
+
 runPipelineBtn.addEventListener('click', async () => {
   runPipelineBtn.disabled = true;
   runPipelineBtn.textContent = 'Running pipeline...';
@@ -215,6 +224,8 @@ runPipelineBtn.addEventListener('click', async () => {
   }
 });
 
+// Run the scheduler after the pipeline finishes successfully
+
 runSchedulerBtn.addEventListener('click', async () => {
   runSchedulerBtn.disabled = true;
   runSchedulerBtn.textContent = 'Running scheduler...';
@@ -235,6 +246,8 @@ runSchedulerBtn.addEventListener('click', async () => {
     runSchedulerBtn.textContent = 'Run scheduler now';
   }
 });
+
+// Show the results of the data quality checks
 
 function renderFleet(f) {
   const typeItems = Object.entries(f.assets_by_type).map(([k, v]) =>
@@ -264,6 +277,8 @@ function renderQuality(qr) {
   ).join('') + '</div>';
 }
 
+// Create the latency chart used to monitor scheduler performance
+
 function renderInsights(insights) {
   if (!insights.chronic_assets.length) {
     document.getElementById('assetList').innerHTML = '<div class="empty-state">No chronic assets found in this run.</div>';
@@ -291,6 +306,8 @@ function initChart() {
   });
 }
 initChart();
+
+// Animate ticket creation results so users can watch scheduler performance
 
 function replayLatency(tickets) {
   latencyChart.data.labels = [];
