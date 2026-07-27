@@ -1,0 +1,616 @@
+work_order_id,asset_id,asset_type,zone,reported_time,scheduled_time,completed_time,status,technician,downtime_hours,notes
+WO-10517,V2014,Valve,Nairobi,21/05/2026 22:00,24/05/2026 21:00,24/05/2026 20:02,Completed,S. Mwangi,70.0,
+WO-10141,P2019,Pump,Kisumu,05-05-2026 04:00,05-06-2026 01:00,05-05-2026 21:04,Completed,R. Achieng,17.1,Pressure drop reported by depot operator
+WO-10583,V2012,Valve,Nairobi,2026-04-18 04:00,2026-04-18 18:00,,overdue,,,Scheduled preventive maintenance
+WO-10342,P2019,Pump,Kisumu,09/07/2026 19:00,11/07/2026 23:00,,Open,,,Pressure drop reported by depot operator
+WO-10214,V2023,Valve,Kisumu,28/05/2026 04:00,29/05/2026 08:00,,overdue,,,
+WO-10547,P2017,Pump,Kisumu,06-18-2026 09:00,06-20-2026 09:00,,in progress,D. Omondi,,Routine inspection flagged vibration anomaly
+WO-10333,V2006,Valve,Mombasa,2026-05-03 05:00,2026-05-04 07:00,,overdue,J. Otieno,,
+WO-10553,V2006,Valve,Mombasa,07/06/2026 05:00,08/06/2026 01:00,08/06/2026 06:09,Closed,A. Wanjiru,25.2,Scheduled preventive maintenance
+WO-10515,V2006,Valve,Mombasa,20/06/2026 23:00,22/06/2026 17:00,,Overdue,J. Otieno,,Routine inspection flagged vibration anomaly
+WO-10425,V2013,Valve,Nairobi,2026-07-01 23:00,2026-07-04 06:00,2026-07-03 21:16,Complete,,46.3,
+WO-10305,V2013,Valve,Nairobi,06-22-2026 16:00,06-24-2026 17:00,,In Progress,S. Mwangi,,Pressure drop reported by depot operator
+WO-10140,V2005,Valve,Mombasa,01/04/2026 16:00,03/04/2026 09:00,,Open,,,Pressure drop reported by depot operator
+WO-10510,P2009,Pump,Nairobi,2026-04-15 02:00,2026-04-17 06:00,2026-04-17 07:26,COMPLETE,F. Muthoni,53.4,
+WO-10146,P2001,Pump,Mombasa,06-10-2026 17:00,06-12-2026 10:00,,OVERDUE,,,Scheduled preventive maintenance
+WO-10109,V2020,Valve,Kisumu,2026-04-15 10:00,2026-04-16 11:00,2026-04-16 11:57,Completed,,26.0,
+WO-10518,V2012,Valve,Nairobi,23/05/2026 11:00,26/05/2026 09:00,26/05/2026 08:39,Complete,,69.7,Pressure drop reported by depot operator
+WO-10187,P2018,Pump,Kisumu,2026-05-16 05:00,2026-05-18 17:00,,IN-PROGRESS,R. Achieng,,Escalated from HSE early-warning alert
+WO-10468,V2014,Valve,Nairobi,2026-05-31 04:00,2026-05-31 22:00,,opened,F. Muthoni,,Escalated from HSE early-warning alert
+WO-10318,P2003,Pump,Mombasa,05/05/2026 17:00,08/05/2026 13:00,08/05/2026 12:43,Completed,,67.7,
+WO-10179,P2016,Pump,Kisumu,2026-05-28 09:00,2026-05-30 15:00,2026-05-30 14:11,Closed,D. Omondi,53.2,Routine inspection flagged vibration anomaly
+WO-10404,V2015,Valve,Nairobi,05/06/2026 08:00,06/06/2026 00:00,,In-Progress,S. Mwangi,,Escalated from HSE early-warning alert
+WO-10508,P2001,Pump,Mombasa,2026-04-01 17:00,2026-04-02 18:00,2026-04-02 21:14,completed,J. Otieno,28.2,Routine inspection flagged vibration anomaly
+WO-10110,V2021,Valve,Kisumu,05/04/2026 00:00,06/04/2026 00:00,06/04/2026 03:33,completed,,27.6,Pressure drop reported by depot operator
+WO-10521,V2020,Valve,Kisumu,2026-05-10 04:00,2026-05-11 03:00,,OPEN,D. Omondi,,Routine inspection flagged vibration anomaly
+WO-10099,P2017,Pump,Kisumu,2026-05-29 01:00,2026-05-31 19:00,,in progress,,,Escalated from HSE early-warning alert
+WO-10519,V2020,Valve,Kisumu,14/04/2026 11:00,16/04/2026 18:00,16/04/2026 20:46,Complete,R. Achieng,57.8,Scheduled preventive maintenance
+WO-10559,V2014,Valve,Nairobi,04-19-2026 07:00,04-19-2026 15:00,,in progress,S. Mwangi,,Pressure drop reported by depot operator
+WO-10416,P2008,Pump,Nairobi,26/06/2026 19:00,28/06/2026 15:00,,Open,S. Mwangi,,Scheduled preventive maintenance
+WO-10070,V2012,Valve,Nairobi,2026-04-17 08:00,2026-04-19 01:00,2026-04-18 19:16,Completed,F. Muthoni,35.3,
+WO-10053,P2011,Pump,Nairobi,22/06/2026 01:00,22/06/2026 12:00,22/06/2026 13:27,completed,S. Mwangi,12.5,Pressure drop reported by depot operator
+WO-10573,P2000,Pump,Mombasa,2026-05-23 07:00,2026-05-25 08:00,,open,,,Escalated from HSE early-warning alert
+WO-10256,V2022,Valve,Kisumu,27/04/2026 11:00,28/04/2026 14:00,28/04/2026 20:46,COMPLETE,R. Achieng,33.8,Routine inspection flagged vibration anomaly
+WO-10272,P2010,Pump,Nairobi,04-22-2026 16:00,04-24-2026 07:00,04-24-2026 10:13,Complete,S. Mwangi,42.2,Escalated from HSE early-warning alert
+WO-10291,P2009,Pump,Nairobi,2026-04-09 15:00,2026-04-12 08:00,,opened,,,
+WO-10344,V2006,Valve,Mombasa,06-19-2026 10:00,06-20-2026 11:00,06-19-2026 20:54,completed,A. Wanjiru,10.9,Scheduled preventive maintenance
+WO-10261,P2010,Pump,nairobi,2026-04-17 05:00,2026-04-17 23:00,2026-04-18 03:35,Complete,,22.6,Escalated from HSE early-warning alert
+WO-10409,V2012,Valve,Nairobi,2026-06-29 20:00,2026-07-02 06:00,2026-07-02 13:21,Closed,F. Muthoni,65.4,
+WO-10240,P2000,Pump,Mombasa,07-02-2026 01:00,07-02-2026 05:00,07-02-2026 15:42,COMPLETE,J. Otieno,14.7,Scheduled preventive maintenance
+WO-10229,V2005,Valve,Mombasa,26/05/2026 18:00,27/05/2026 05:00,26/05/2026 23:43,COMPLETE,B. Njoroge,5.7,Scheduled preventive maintenance
+WO-10115,P2000,Pump,Mombasa,10/06/2026 08:00,12/06/2026 05:00,,Overdue,A. Wanjiru,,Escalated from HSE early-warning alert
+WO-10243,P2010,Pump,Nairobi,16/04/2026 15:00,17/04/2026 08:00,17/04/2026 01:35,Closed,,10.6,Pressure drop reported by depot operator
+WO-10306,V2013,Valve,Nairobi,20/05/2026 22:00,22/05/2026 23:00,,OPEN,P. Kiptoo,,Scheduled preventive maintenance
+WO-10351,P2000,Pump,Mombasa,18/06/2026 14:00,19/06/2026 01:00,,In-Progress,,,
+WO-10586,P2001,Pump,Mombasa,05-05-2026 00:00,05-06-2026 04:00,05-05-2026 23:47,Closed,,23.8,
+WO-10561,P2001,Pump,Mombasa,01/04/2026 04:00,03/04/2026 05:00,03/04/2026 09:59,Complete,A. Wanjiru,54.0,Escalated from HSE early-warning alert
+WO-10142,P2009,Pump,Nairobi,07-01-2026 04:00,07-02-2026 08:00,,in progress,,,Scheduled preventive maintenance
+WO-10336,V2012,Valve,Nairobi,2026-06-21 04:00,2026-06-22 22:00,2026-06-22 14:15,COMPLETE,F. Muthoni,34.3,
+WO-10154,V2012,Valve,Nairobi,05-08-2026 00:00,05-10-2026 19:00,05-11-2026 02:47,Complete,P. Kiptoo,74.8,Escalated from HSE early-warning alert
+WO-10503,P2011,Pump,Nairobi,15/04/2026 02:00,16/04/2026 04:00,,overdue,,,Routine inspection flagged vibration anomaly
+WO-10514,V2012,Valve,Nairobi,25/05/2026 16:00,27/05/2026 17:00,27/05/2026 22:14,Closed,,54.2,
+WO-10292,V2013,Valve,Nairobi,08/07/2026 06:00,10/07/2026 04:00,,In-Progress,,,Routine inspection flagged vibration anomaly
+WO-10221,V2006,Valve,Mombasa,06-09-2026 23:00,06-12-2026 17:00,,open,,,Routine inspection flagged vibration anomaly
+WO-10285,P2018,Pump,Kisumu,15/04/2026 20:00,16/04/2026 15:00,16/04/2026 14:33,Complete,,372.0,
+WO-10571,V2021,Valve,Kisumu,09/04/2026 09:00,12/04/2026 00:00,12/04/2026 06:47,Completed,,69.8,Escalated from HSE early-warning alert
+WO-10556,V2020,Valve,Kisumu,28/04/2026 12:00,29/04/2026 21:00,30/04/2026 10:33,Closed,,46.6,
+WO-10101,V2013,Valve,Nairobi,15/06/2026 01:00,15/06/2026 11:00,,Overdue,P. Kiptoo,,Routine inspection flagged vibration anomaly
+WO-10511,V2006,Valve,Mombasa,23/05/2026 00:00,23/05/2026 14:00,,overdue,,,Escalated from HSE early-warning alert
+WO-10322,V2013,Valve,Nairobi,03/04/2026 02:00,04/04/2026 03:00,04/04/2026 05:14,completed,P. Kiptoo,27.2,Pressure drop reported by depot operator
+WO-10418,V2021,Valve,Kisumu,06-07-2026 11:00,06-09-2026 08:00,06-09-2026 08:02,COMPLETE,D. Omondi,45.0,Pressure drop reported by depot operator
+WO-10328,V2007,Valve,Mombasa,2026-07-04 06:00,2026-07-06 15:00,2026-07-06 10:22,Closed,B. Njoroge,52.4,
+WO-10283,P2010,Pump,Nairobi,07/07/2026 23:00,09/07/2026 12:00,,OPEN,F. Muthoni,,Scheduled preventive maintenance
+WO-10060,P2016,Pump,Kisumu,14/05/2026 15:00,15/05/2026 03:00,,In Progress,R. Achieng,,Scheduled preventive maintenance
+WO-10300,V2015,Valve,Nairobi,03/06/2026 05:00,05/06/2026 12:00,05/06/2026 16:05,Completed,F. Muthoni,59.1,Pressure drop reported by depot operator
+WO-10200,P2011,Pump,Nairobi,24/05/2026 15:00,25/05/2026 10:00,,in progress,,,
+WO-10132,V2023,Valve,Kisumu,2026-04-21 08:00,2026-04-23 15:00,,IN-PROGRESS,,,Routine inspection flagged vibration anomaly
+WO-10536,P2008,Pump,Nairobi,15/04/2026 21:00,18/04/2026 20:00,19/04/2026 02:32,Complete,,77.5,Routine inspection flagged vibration anomaly
+WO-10155,P2019,Pump,Kisumu,2026-04-16 01:00,2026-04-18 04:00,2026-04-18 11:39,completed,,58.7,
+WO-10013,V2014,Valve,Nairobi,17/04/2026 22:00,20/04/2026 07:00,,Overdue,P. Kiptoo,,Scheduled preventive maintenance
+WO-10354,P2008,Pump,Nairobi,07-01-2026 23:00,07-03-2026 12:00,07-03-2026 16:49,COMPLETE,,41.8,
+WO-10060,P2016,Pump,Kisumu,14/05/2026 15:00,15/05/2026 03:00,,In Progress,R. Achieng,,Scheduled preventive maintenance
+WO-10134,P2000,Pump,Mombasa,2026-04-27 00:00,2026-04-29 05:00,2026-04-29 08:43,Complete,,56.7,Scheduled preventive maintenance
+WO-10321,P2008,Pump,Nairobi,15/06/2026 05:00,17/06/2026 14:00,17/06/2026 17:05,COMPLETE,,60.1,
+WO-10249,P2000,Pump,Mombasa,07-07-2026 10:00,07-08-2026 03:00,07-08-2026 11:44,completed,B. Njoroge,25.7,Routine inspection flagged vibration anomaly
+WO-10192,P2002,Pump,Mombasa,08/05/2026 20:00,09/05/2026 22:00,,IN-PROGRESS,J. Otieno,,
+WO-10003,V2023,Valve,Kisumu,2026-05-23 08:00,2026-05-25 15:00,2026-05-26 00:18,Completed,,64.3,
+WO-10272,P2010,Pump,Nairobi,04-22-2026 16:00,04-24-2026 07:00,04-24-2026 10:13,Complete,S. Mwangi,42.2,Escalated from HSE early-warning alert
+WO-10595,P2003,Pump,Mombasa,12/05/2026 12:00,13/05/2026 19:00,,open,,,
+WO-10168,P2000,Pump,Mombasa,06-26-2026 18:00,06-29-2026 15:00,06-30-2026 00:13,Completed,,78.2,Pressure drop reported by depot operator
+WO-10052,P2019,Pump,Kisumu,2026-06-19 15:00,2026-06-20 06:00,,Open,,,
+WO-10017,P2000,Pump,Mombasa,07-09-2026 06:00,07-10-2026 02:00,,open,J. Otieno,,
+WO-10217,P2018,Pump,Kisumu,2026-04-03 02:00,2026-04-04 17:00,2026-04-04 20:57,Complete,R. Achieng,43.0,Routine inspection flagged vibration anomaly
+WO-10050,V2013,Valve,Nairobi,06-01-2026 10:00,06-02-2026 16:00,,opened,F. Muthoni,,Scheduled preventive maintenance
+WO-10261,P2010,Pump,nairobi,2026-04-17 05:00,2026-04-17 23:00,2026-04-18 03:35,Complete,,22.6,Escalated from HSE early-warning alert
+WO-10555,P2017,Pump,Kisumu,04-18-2026 01:00,04-18-2026 12:00,,in progress,,,
+WO-10529,V2015,Valve,Nairobi,06/05/2026 23:00,07/05/2026 11:00,,overdue,,,
+WO-10098,P2017,Pump,Kisumu,05-18-2026 13:00,05-19-2026 20:00,05-19-2026 18:57,Completed,R. Achieng,30.0,Pressure drop reported by depot operator
+WO-10252,V2004,Valve,Mombasa,04-27-2026 22:00,04-28-2026 09:00,,OVERDUE,,,Routine inspection flagged vibration anomaly
+WO-10436,P2009,Pump,Nairobi,2026-04-27 03:00,2026-04-28 14:00,,overdue,,,Scheduled preventive maintenance
+WO-10030,V2005,Valve,Mombasa,06-23-2026 15:00,06-24-2026 23:00,,overdue,J. Otieno,,Escalated from HSE early-warning alert
+WO-10172,V2013,Valve,Nairobi,2026-05-11 21:00,2026-05-13 03:00,,overdue,,,
+WO-10451,V2014,Valve,Nairobi,2026-06-21 04:00,2026-06-23 07:00,,in progress,,,
+WO-10371,P2017,Pump,Kisumu,05-17-2026 07:00,05-18-2026 04:00,05-18-2026 12:35,Completed,R. Achieng,29.6,Scheduled preventive maintenance
+WO-10439,V2023,Valve,Kisumu,2026-04-23 20:00,2026-04-25 12:00,,in progress,,,Pressure drop reported by depot operator
+WO-10022,P2010,Pump,Nairobi,25/04/2026 05:00,25/04/2026 09:00,25/04/2026 18:14,COMPLETE,S. Mwangi,13.2,
+WO-10369,V2013,Valve,Nairobi,2026-07-08 12:00,2026-07-10 03:00,,Overdue,,,
+WO-10236,V2012,Valve,Nairobi,2026-05-14 22:00,2026-05-16 21:00,2026-05-16 12:06,Complete,,38.1,Scheduled preventive maintenance
+WO-10429,P2018,Pump,Kisumu,19/05/2026 04:00,20/05/2026 10:00,20/05/2026 08:38,completed,D. Omondi,28.6,Routine inspection flagged vibration anomaly
+WO-10051,V2007,Valve,Mombasa,2026-04-03 03:00,2026-04-03 13:00,,open,J. Otieno,,Escalated from HSE early-warning alert
+WO-10046,V2015,Valve,Nairobi,2026-05-15 20:00,2026-05-16 15:00,2026-05-16 09:49,Completed,,13.8,
+WO-10324,P2003,Pump,Mombasa,2026-04-29 02:00,2026-04-29 16:00,2026-04-30 03:00,Closed,,25.0,Pressure drop reported by depot operator
+WO-10289,P2011,Pump,Nairobi,26/04/2026 09:00,29/04/2026 03:00,29/04/2026 06:25,Completed,,69.4,Routine inspection flagged vibration anomaly
+WO-10193,V2005,Valve,Mombasa,2026-04-08 00:00,2026-04-10 04:00,,in progress,A. Wanjiru,,Pressure drop reported by depot operator
+WO-10278,V2021,Valve,Kisumu,2026-04-15 20:00,2026-04-18 12:00,,OVERDUE,D. Omondi,,
+WO-10228,P2011,Pump,Nairobi,2026-06-12 17:00,2026-06-13 04:00,2026-06-13 08:24,COMPLETE,,15.4,Scheduled preventive maintenance
+WO-10259,P2003,Pump,Mombasa,06/07/2026 02:00,08/07/2026 13:00,,Past Due,A. Wanjiru,,Pressure drop reported by depot operator
+WO-10387,P2003,Pump,Mombasa,16/04/2026 02:00,17/04/2026 18:00,17/04/2026 16:51,Closed,,38.9,Pressure drop reported by depot operator
+WO-10453,P2018,Pump,Kisumu,06-13-2026 16:00,06-16-2026 04:00,,IN-PROGRESS,,,Escalated from HSE early-warning alert
+WO-10355,V2013,Valve,Nairobi,05-11-2026 00:00,05-11-2026 20:00,,Open,,,Routine inspection flagged vibration anomaly
+WO-10232,V2014,Valve,nairobi,05-04-2026 19:00,05-07-2026 06:00,05-07-2026 17:11,Completed,,70.2,Routine inspection flagged vibration anomaly
+WO-10273,P2003,Pump,Mombasa,2026-04-26 02:00,2026-04-28 02:00,,in progress,A. Wanjiru,,
+WO-10382,V2004,Valve,Mombasa,2026-05-22 15:00,2026-05-25 00:00,,Overdue,A. Wanjiru,,
+WO-10441,V2005,Valve,Mombasa,04-16-2026 09:00,04-18-2026 04:00,,Overdue,,,Scheduled preventive maintenance
+WO-10159,V2005,Valve,Mombasa,2026-04-15 01:00,2026-04-15 20:00,,in progress,A. Wanjiru,,
+WO-10097,V2005,Valve,Mombasa,05-22-2026 03:00,05-23-2026 03:00,,In Progress,,,
+WO-10455,V2020,Valve,Kisumu,2026-06-01 13:00,2026-06-03 06:00,,OVERDUE,R. Achieng,,Pressure drop reported by depot operator
+WO-10590,V2012,Valve,Nairobi,2026-07-01 06:00,2026-07-03 21:00,2026-07-04 02:29,completed,,68.5,Scheduled preventive maintenance
+WO-10531,P2011,Pump,Nairobi,01/07/2026 23:00,04/07/2026 02:00,04/07/2026 14:24,completed,,63.4,Routine inspection flagged vibration anomaly
+WO-10523,P2009,Pump,Nairobi,2026-04-27 02:00,2026-04-28 13:00,,In Progress,F. Muthoni,,Scheduled preventive maintenance
+WO-10055,P2017,Pump,Kisumu,04-18-2026 03:00,04-20-2026 06:00,04-20-2026 09:53,Closed,,54.9,
+WO-10023,V2023,Valve,Kisumu,2026-04-04 23:00,2026-04-07 22:00,2026-04-08 05:53,completed,R. Achieng,78.9,
+WO-10499,V2014,Valve,Nairobi,23/05/2026 23:00,24/05/2026 11:00,24/05/2026 13:03,completed,P. Kiptoo,14.1,Pressure drop reported by depot operator
+WO-10346,P2018,Pump,Kisumu,2026-04-06 11:00,2026-04-08 15:00,2026-04-08 15:31,completed,,52.5,Scheduled preventive maintenance
+WO-10466,V2012,Valve,Nairobi,14/05/2026 23:00,17/05/2026 16:00,17/05/2026 15:54,COMPLETE,F. Muthoni,64.9,Escalated from HSE early-warning alert
+WO-10340,P2017,Pump,Kisumu,30/06/2026 03:00,01/07/2026 22:00,,Overdue,,,Routine inspection flagged vibration anomaly
+WO-10242,V2015,Valve,Nairobi,2026-05-02 10:00,2026-05-03 07:00,,Open,P. Kiptoo,,
+WO-10392,P2011,Pump,Nairobi,06-14-2026 10:00,06-17-2026 02:00,06-17-2026 14:24,Closed,,76.4,Pressure drop reported by depot operator
+WO-10284,P2008,Pump,Nairobi,07/04/2026 23:00,09/04/2026 16:00,,Overdue,F. Muthoni,,Scheduled preventive maintenance
+WO-10449,P2001,Pump,Mombasa,2026-07-02 05:00,2026-07-04 20:00,2026-07-05 04:35,COMPLETE,,71.6,Pressure drop reported by depot operator
+WO-10327,V2014,Valve,Nairobi,06/05/2026 16:00,07/05/2026 19:00,,Overdue,P. Kiptoo,,Escalated from HSE early-warning alert
+WO-10506,V2021,Valve,kisumu,2026-05-31 17:00,2026-06-01 16:00,2026-06-01 12:35,completed,,19.6,Scheduled preventive maintenance
+WO-10575,P2019,Pump,Kisumu,2026-05-15 01:00,2026-05-17 08:00,,open,,,Scheduled preventive maintenance
+WO-10375,V2014,Valve,Nairobi,05-24-2026 01:00,05-26-2026 01:00,,Overdue,,,
+WO-10593,V2021,Valve,Kisumu,05-02-2026 06:00,05-04-2026 05:00,,in progress,R. Achieng,,Escalated from HSE early-warning alert
+WO-10082,V2020,Valve,Kisumu,2026-04-05 20:00,2026-04-08 01:00,2026-04-08 09:37,Closed,,61.6,Routine inspection flagged vibration anomaly
+WO-10202,V2015,Valve,Nairobi,2026-07-05 08:00,2026-07-08 01:00,2026-07-08 10:06,Complete,,74.1,Escalated from HSE early-warning alert
+WO-10213,P2010,Pump,Nairobi,08/06/2026 00:00,10/06/2026 22:00,10/06/2026 17:05,Closed,F. Muthoni,65.1,
+WO-10222,P2019,Pump,Kisumu,04-19-2026 21:00,04-22-2026 02:00,04-22-2026 18:52,completed,R. Achieng,69.9,
+WO-10038,V2013,Valve,Nairobi,20/05/2026 17:00,21/05/2026 07:00,21/05/2026 12:31,Closed,,19.5,
+WO-10383,P2002,Pump,Mombasa,2026-06-23 13:00,2026-06-25 02:00,2026-06-24 19:14,Complete,A. Wanjiru,30.2,Scheduled preventive maintenance
+WO-10010,V2005,Valve,Mombasa,11/06/2026 17:00,12/06/2026 07:00,12/06/2026 12:38,completed,,19.6,
+WO-10492,V2004,Valve,Mombasa,2026-07-04 10:00,2026-07-05 02:00,2026-07-05 09:11,completed,A. Wanjiru,23.2,Pressure drop reported by depot operator
+WO-10032,V2020,Valve,Kisumu,2026-07-04 20:00,2026-07-05 06:00,2026-07-05 06:03,Completed,R. Achieng,10.1,Scheduled preventive maintenance
+WO-10271,P2003,Pump,Mombasa,2026-05-17 14:00,2026-05-19 10:00,,Past Due,,,Scheduled preventive maintenance
+WO-10454,P2017,Pump,Kisumu,10/05/2026 22:00,12/05/2026 16:00,,open,,,
+WO-10025,P2018,Pump,Kisumu,2026-05-01 09:00,2026-05-02 21:00,2026-05-02 18:59,COMPLETE,,34.0,Scheduled preventive maintenance
+WO-10239,V2015,Valve,Nairobi,2026-04-26 15:00,2026-04-29 00:00,2026-04-28 19:38,Closed,P. Kiptoo,52.6,Pressure drop reported by depot operator
+WO-10545,V2004,Valve,Mombasa,2026-06-10 04:00,2026-06-12 15:00,2026-06-12 15:17,COMPLETE,,59.3,Escalated from HSE early-warning alert
+WO-10430,V2006,Valve,Mombasa,21/06/2026 17:00,22/06/2026 22:00,,In Progress,,,Routine inspection flagged vibration anomaly
+WO-10313,V2015,Valve,Nairobi,05-07-2026 17:00,05-07-2026 21:00,,Overdue,F. Muthoni,,
+WO-10435,P2001,Pump,Mombasa,24/04/2026 04:00,27/04/2026 01:00,27/04/2026 07:35,COMPLETE,,75.6,Escalated from HSE early-warning alert
+WO-10566,V2021,Valve,Kisumu,05-06-2026 06:00,05-07-2026 19:00,,In-Progress,R. Achieng,,Pressure drop reported by depot operator
+WO-10089,P2000,Pump,Mombasa,18/05/2026 22:00,21/05/2026 20:00,22/05/2026 03:18,Closed,,77.3,Pressure drop reported by depot operator
+WO-10065,P2017,Pump,Kisumu,27/04/2026 08:00,29/04/2026 03:00,,Open,,,Pressure drop reported by depot operator
+WO-10367,P2009,Pump,Nairobi,01/06/2026 19:00,04/06/2026 07:00,,open,S. Mwangi,,Routine inspection flagged vibration anomaly
+WO-10378,V2005,Valve,Mombasa,2026-04-29 22:00,2026-05-02 18:00,,Open,,,Escalated from HSE early-warning alert
+WO-10258,V2014,Valve,Nairobi,2026-05-04 15:00,2026-05-04 21:00,2026-05-05 02:02,Completed,S. Mwangi,11.0,Scheduled preventive maintenance
+WO-10281,V2004,Valve,Mombasa,07-07-2026 02:00,07-09-2026 02:00,,OPEN,J. Otieno,,
+WO-10479,P2019,Pump,Kisumu,21/04/2026 16:00,22/04/2026 08:00,22/04/2026 15:11,Closed,,23.2,Routine inspection flagged vibration anomaly
+WO-10505,V2012,Valve,Nairobi,02/04/2026 06:00,03/04/2026 03:00,03/04/2026 03:20,COMPLETE,S. Mwangi,21.3,
+WO-10209,P2000,Pump,Mombasa,04-16-2026 21:00,04-17-2026 11:00,,OPEN,A. Wanjiru,,
+WO-10504,P2011,Pump,Nairobi,22/06/2026 12:00,23/06/2026 18:00,23/06/2026 21:20,COMPLETE,,33.3,Scheduled preventive maintenance
+WO-10395,V2013,Valve,Nairobi,2026-07-07 02:00,2026-07-07 13:00,2026-07-07 21:48,Completed,,-19.8,Routine inspection flagged vibration anomaly
+WO-10040,V2014,Valve,Nairobi,2026-04-27 13:00,2026-04-30 12:00,,opened,,,Pressure drop reported by depot operator
+WO-10437,P2001,Pump,Mombasa,2026-05-14 04:00,2026-05-16 12:00,2026-05-16 08:43,completed,A. Wanjiru,52.7,
+WO-10248,P2003,Pump,Mombasa,26/04/2026 09:00,29/04/2026 00:00,28/04/2026 18:10,COMPLETE,B. Njoroge,57.2,Pressure drop reported by depot operator
+WO-10542,P2017,Pump,Kisumu,04/07/2026 01:00,04/07/2026 19:00,,in progress,,,Pressure drop reported by depot operator
+WO-10592,V2004,Valve,Mombasa,05/04/2026 19:00,06/04/2026 00:00,,Past Due,J. Otieno,,Scheduled preventive maintenance
+WO-10381,P2016,Pump,Kisumu,2026-06-06 12:00,2026-06-07 14:00,,overdue,,,
+WO-10564,P2000,Pump,Mombasa,01/04/2026 16:00,04/04/2026 04:00,04/04/2026 13:21,Closed,,69.4,
+WO-10056,P2017,Pump,Kisumu,05-03-2026 07:00,05-03-2026 11:00,,Past Due,,,Escalated from HSE early-warning alert
+WO-10316,V2005,Valve,Mombasa,17/04/2026 00:00,17/04/2026 11:00,,OVERDUE,,,
+WO-10071,V2012,Valve,Nairobi,22/05/2026 10:00,22/05/2026 22:00,23/05/2026 01:36,Closed,,15.6,Routine inspection flagged vibration anomaly
+WO-10406,V2021,Valve,Kisumu,04-13-2026 07:00,04-13-2026 22:00,04-13-2026 20:57,COMPLETE,R. Achieng,14.0,Routine inspection flagged vibration anomaly
+WO-10204,V2020,Valve,Kisumu,2026-04-29 05:00,2026-04-30 06:00,2026-04-30 13:21,Complete,R. Achieng,32.4,
+WO-10090,V2005,Valve,Mombasa,06-15-2026 23:00,06-16-2026 18:00,,Open,A. Wanjiru,,
+WO-10166,V2021,Valve,Kisumu,08/06/2026 13:00,08/06/2026 21:00,,In-Progress,,,Scheduled preventive maintenance
+WO-10277,P2000,Pump,Mombasa,03/06/2026 19:00,05/06/2026 21:00,05/06/2026 17:00,Completed,J. Otieno,46.0,Scheduled preventive maintenance
+WO-10170,P2001,Pump,Mombasa,2026-06-23 14:00,2026-06-24 13:00,2026-06-24 18:13,COMPLETE,,28.2,Routine inspection flagged vibration anomaly
+WO-10054,P2011,Pump,Nairobi,06-30-2026 06:00,06-30-2026 11:00,,overdue,,,
+WO-10384,V2007,Valve,Mombasa,05-30-2026 04:00,05-31-2026 14:00,05-31-2026 19:56,Completed,,39.9,
+WO-10294,V2022,Valve,Kisumu,22/05/2026 13:00,22/05/2026 21:00,22/05/2026 22:37,completed,R. Achieng,9.6,
+WO-10493,V2014,Valve,Nairobi,16/06/2026 13:00,18/06/2026 09:00,18/06/2026 13:11,COMPLETE,,48.2,
+WO-10066,P2000,Pump,Mombasa,2026-04-30 05:00,2026-05-02 13:00,2026-05-02 13:31,Completed,,56.5,Routine inspection flagged vibration anomaly
+WO-10422,V2004,Valve,Mombasa,06-23-2026 16:00,06-24-2026 04:00,06-24-2026 06:32,Closed,B. Njoroge,14.5,Pressure drop reported by depot operator
+WO-10304,V2020,Valve,Kisumu,09/07/2026 16:00,10/07/2026 17:00,,In-Progress,D. Omondi,,Pressure drop reported by depot operator
+WO-10471,V2007,Valve,Mombasa,2026-04-18 00:00,2026-04-19 17:00,,OPEN,,,Pressure drop reported by depot operator
+WO-10582,V2012,Valve,Nairobi,04-16-2026 05:00,04-18-2026 18:00,04-19-2026 05:43,Completed,,72.7,
+WO-10454,P2017,Pump,Kisumu,10/05/2026 22:00,12/05/2026 16:00,,open,,,
+WO-10120,V2013,Valve,Nairobi,23/04/2026 04:00,23/04/2026 19:00,,overdue,,,Routine inspection flagged vibration anomaly
+WO-10335,V2012,Valve,Nairobi,06-12-2026 07:00,06-13-2026 21:00,,open,P. Kiptoo,,Scheduled preventive maintenance
+WO-10452,P2002,Pump,Mombasa,2026-04-01 01:00,2026-04-02 18:00,,In Progress,B. Njoroge,,Escalated from HSE early-warning alert
+WO-10188,P2018,Pump,Kisumu,05-18-2026 16:00,05-21-2026 11:00,,Open,,,Escalated from HSE early-warning alert
+WO-10388,P2018,Pump,Kisumu,28/04/2026 00:00,29/04/2026 03:00,,opened,,,Escalated from HSE early-warning alert
+WO-10173,P2003,Pump,Mombasa,19/05/2026 06:00,20/05/2026 08:00,,IN-PROGRESS,B. Njoroge,,Pressure drop reported by depot operator
+WO-10477,V2023,Valve,Kisumu,2026-07-06 16:00,2026-07-08 02:00,2026-07-08 08:26,Closed,,40.4,Scheduled preventive maintenance
+WO-10465,V2023,Valve,Kisumu,2026-06-12 17:00,2026-06-15 04:00,,Past Due,,,Routine inspection flagged vibration anomaly
+WO-10525,V2007,Valve,Mombasa,05-03-2026 09:00,05-03-2026 17:00,,Past Due,S. Mwangi,,
+WO-10428,P2009,Pump,Nairobi,04-15-2026 14:00,04-18-2026 03:00,,in progress,S. Mwangi,,Scheduled preventive maintenance
+WO-10118,P2018,Pump,Kisumu,06/06/2026 16:00,06/06/2026 20:00,,in progress,,,Scheduled preventive maintenance
+WO-10119,V2020,Valve,Kisumu,05-28-2026 07:00,05-30-2026 08:00,,Past Due,,,Routine inspection flagged vibration anomaly
+WO-10319,P2017,Pump,Kisumu,2026-05-21 04:00,2026-05-21 09:00,,In Progress,,,
+WO-10417,P2001,Pump,Mombasa,04-15-2026 13:00,04-18-2026 05:00,04-18-2026 07:09,completed,,66.2,Routine inspection flagged vibration anomaly
+WO-10394,V2014,Valve,Nairobi,05-23-2026 20:00,05-25-2026 22:00,,IN-PROGRESS,F. Muthoni,,Escalated from HSE early-warning alert
+WO-10138,P2016,Pump,Kisumu,19/05/2026 12:00,21/05/2026 07:00,,Open,,,Routine inspection flagged vibration anomaly
+WO-10145,V2021,Valve,Kisumu,07/05/2026 05:00,10/05/2026 04:00,,Overdue,,,Routine inspection flagged vibration anomaly
+WO-10148,V2023,Valve,Kisumu,04-25-2026 09:00,04-27-2026 01:00,04-27-2026 01:56,Completed,D. Omondi,40.9,Pressure drop reported by depot operator
+WO-10487,P2009,Pump,Nairobi,05-29-2026 19:00,05-30-2026 19:00,,Past Due,F. Muthoni,,Routine inspection flagged vibration anomaly
+WO-10446,P2008,Pump,Nairobi,01/04/2026 17:00,03/04/2026 09:00,,Open,,,Scheduled preventive maintenance
+WO-10162,P2016,Pump,kisumu,04/05/2026 20:00,05/05/2026 07:00,,in progress,D. Omondi,,Routine inspection flagged vibration anomaly
+WO-10598,P2010,Pump,Nairobi,2026-04-23 17:00,2026-04-24 21:00,,In Progress,,,
+WO-10114,P2018,Pump,Kisumu,02/07/2026 23:00,03/07/2026 13:00,03/07/2026 02:18,COMPLETE,,3.3,Routine inspection flagged vibration anomaly
+WO-10490,V2005,Valve,Mombasa,04/06/2026 04:00,04/06/2026 17:00,04/06/2026 18:00,Closed,,14.0,Pressure drop reported by depot operator
+WO-10150,V2021,Valve,Kisumu,04-27-2026 08:00,04-28-2026 19:00,04-28-2026 15:21,Completed,,31.4,Escalated from HSE early-warning alert
+WO-10220,P2010,Pump,Nairobi,26/06/2026 15:00,27/06/2026 18:00,27/06/2026 21:10,Completed,P. Kiptoo,30.2,Routine inspection flagged vibration anomaly
+WO-10380,V2022,Valve,Kisumu,06-28-2026 14:00,07-01-2026 07:00,,In Progress,,,Scheduled preventive maintenance
+WO-10132,V2023,Valve,Kisumu,2026-04-21 08:00,2026-04-23 15:00,,IN-PROGRESS,,,Routine inspection flagged vibration anomaly
+WO-10031,P2003,Pump,Mombasa,04-27-2026 11:00,04-30-2026 02:00,,IN-PROGRESS,,,Routine inspection flagged vibration anomaly
+WO-10377,P2018,Pump,Kisumu,06-29-2026 08:00,06-30-2026 20:00,06-30-2026 20:51,Complete,R. Achieng,36.9,Scheduled preventive maintenance
+WO-10440,P2016,Pump,Kisumu,2026-07-08 03:00,2026-07-10 04:00,2026-07-10 04:19,COMPLETE,,49.3,Escalated from HSE early-warning alert
+WO-10020,P2001,Pump,Mombasa,05-08-2026 20:00,05-09-2026 14:00,,Overdue,A. Wanjiru,,
+WO-10461,V2006,Valve,Mombasa,2026-04-22 17:00,2026-04-24 01:00,2026-04-24 03:21,Complete,,34.4,Pressure drop reported by depot operator
+WO-10113,P2001,Pump,Mombasa,17/06/2026 08:00,18/06/2026 22:00,18/06/2026 15:00,Closed,A. Wanjiru,31.0,Escalated from HSE early-warning alert
+WO-10473,P2001,Pump,Mombasa,2026-07-03 03:00,2026-07-04 08:00,2026-07-04 11:49,Complete,J. Otieno,32.8,Routine inspection flagged vibration anomaly
+WO-10000,V2015,Valve,Nairobi,23/04/2026 17:00,24/04/2026 18:00,,Past Due,,,
+WO-10235,P2019,Pump,kisumu,06-11-2026 21:00,06-14-2026 20:00,06-14-2026 20:27,Complete,,71.5,Routine inspection flagged vibration anomaly
+WO-10329,V2012,Valve,Nairobi,2026-06-26 23:00,2026-06-29 22:00,2026-06-30 04:55,Closed,,77.9,Scheduled preventive maintenance
+WO-10293,P2002,Pump,Mombasa,21/04/2026 16:00,22/04/2026 14:00,22/04/2026 20:20,COMPLETE,,28.3,Escalated from HSE early-warning alert
+WO-10372,P2010,Pump,Nairobi,06-06-2026 03:00,06-08-2026 12:00,,Overdue,,,Escalated from HSE early-warning alert
+WO-10558,P2008,Pump,Nairobi,05-09-2026 15:00,05-11-2026 22:00,05-12-2026 10:21,Completed,,67.4,Escalated from HSE early-warning alert
+WO-10580,V2004,Valve,Mombasa,04-12-2026 04:00,04-12-2026 21:00,,overdue,,,Routine inspection flagged vibration anomaly
+WO-10002,V2023,Valve,Kisumu,04-03-2026 11:00,04-05-2026 07:00,,Overdue,,,Pressure drop reported by depot operator
+WO-10587,V2013,Valve,Nairobi,09/07/2026 02:00,11/07/2026 06:00,11/07/2026 16:23,completed,S. Mwangi,62.4,Escalated from HSE early-warning alert
+WO-10058,P2000,Pump,Mombasa,10/06/2026 06:00,12/06/2026 06:00,,OVERDUE,,,Escalated from HSE early-warning alert
+WO-10544,V2014,Valve,Nairobi,2026-04-10 08:00,2026-04-12 11:00,,In Progress,F. Muthoni,,
+WO-10330,P2001,Pump,Mombasa,2026-05-13 13:00,2026-05-15 17:00,2026-05-15 16:35,Completed,,51.6,Routine inspection flagged vibration anomaly
+WO-10004,P2009,Pump,Nairobi,2026-06-23 19:00,2026-06-26 03:00,2026-06-26 02:48,Completed,P. Kiptoo,55.8,Escalated from HSE early-warning alert
+WO-10270,V2022,Valve,Kisumu,24/05/2026 17:00,26/05/2026 19:00,,In Progress,R. Achieng,,
+WO-10339,V2012,Valve,Nairobi,09/04/2026 15:00,11/04/2026 21:00,,Open,,,Escalated from HSE early-warning alert
+WO-10074,P2009,Pump,Nairobi,06-25-2026 07:00,06-27-2026 02:00,,OPEN,F. Muthoni,,Scheduled preventive maintenance
+WO-10191,P2010,Pump,Nairobi,21/05/2026 08:00,23/05/2026 17:00,23/05/2026 16:39,COMPLETE,F. Muthoni,56.7,Routine inspection flagged vibration anomaly
+WO-10244,P2010,Pump,Nairobi,2026-04-30 10:00,2026-05-01 02:00,,Past Due,,,Escalated from HSE early-warning alert
+WO-10552,P2001,Pump,Mombasa,18/06/2026 06:00,19/06/2026 14:00,19/06/2026 22:58,Completed,J. Otieno,41.0,Pressure drop reported by depot operator
+WO-10320,V2023,Valve,Kisumu,07-03-2026 23:00,07-05-2026 21:00,07-05-2026 20:42,COMPLETE,,45.7,
+WO-10080,V2022,Valve,Kisumu,16/04/2026 18:00,17/04/2026 01:00,17/04/2026 06:38,Closed,,12.6,Escalated from HSE early-warning alert
+WO-10357,V2014,Valve,Nairobi,10/06/2026 13:00,11/06/2026 00:00,11/06/2026 01:24,Closed,,12.4,
+WO-10245,V2020,Valve,Kisumu,12/05/2026 02:00,12/05/2026 06:00,12/05/2026 05:32,Completed,D. Omondi,3.5,Scheduled preventive maintenance
+WO-10026,P2017,Pump,Kisumu,03/06/2026 07:00,04/06/2026 06:00,,In-Progress,R. Achieng,,Pressure drop reported by depot operator
+WO-10407,V2021,Valve,Kisumu,16/05/2026 19:00,17/05/2026 05:00,17/05/2026 03:01,Complete,,8.0,Pressure drop reported by depot operator
+WO-10216,V2020,Valve,Kisumu,2026-06-20 15:00,2026-06-23 05:00,,OVERDUE,,,
+WO-10467,V2015,Valve,Nairobi,13/04/2026 13:00,14/04/2026 09:00,,OPEN,,,Pressure drop reported by depot operator
+WO-10585,P2003,Pump,Mombasa,2026-06-27 02:00,2026-06-29 03:00,2026-06-29 00:15,Closed,A. Wanjiru,46.3,Scheduled preventive maintenance
+WO-10433,P2010,Pump,Nairobi,05-04-2026 18:00,05-06-2026 08:00,,in progress,,,
+WO-10057,P2000,Pump,Mombasa,2026-05-14 04:00,2026-05-15 23:00,2026-05-16 01:50,Complete,J. Otieno,45.8,
+WO-10323,P2016,Pump,Kisumu,07-03-2026 04:00,07-06-2026 00:00,,opened,D. Omondi,,Pressure drop reported by depot operator
+WO-10108,V2023,Valve,Kisumu,07-05-2026 00:00,07-07-2026 14:00,07-07-2026 11:33,Complete,,59.6,Escalated from HSE early-warning alert
+WO-10280,V2014,Valve,Nairobi,05-10-2026 16:00,05-13-2026 04:00,,IN-PROGRESS,F. Muthoni,,Routine inspection flagged vibration anomaly
+WO-10147,V2023,Valve,Kisumu,2026-05-30 14:00,2026-05-31 06:00,,Open,,,Scheduled preventive maintenance
+WO-10014,P2001,Pump,Mombasa,17/04/2026 21:00,20/04/2026 12:00,,OVERDUE,A. Wanjiru,,Pressure drop reported by depot operator
+WO-10174,P2010,Pump,Nairobi,12/06/2026 11:00,14/06/2026 04:00,14/06/2026 13:19,Completed,,50.3,Escalated from HSE early-warning alert
+WO-10086,P2016,Pump,Kisumu,2026-07-06 14:00,2026-07-07 15:00,,OPEN,D. Omondi,,Pressure drop reported by depot operator
+WO-10165,P2016,Pump,Kisumu,2026-06-09 20:00,2026-06-10 13:00,2026-06-10 06:25,Closed,D. Omondi,10.4,Pressure drop reported by depot operator
+WO-10534,P2000,Pump,Mombasa,2026-05-18 16:00,2026-05-19 07:00,,Overdue,A. Wanjiru,,
+WO-10059,P2001,Pump,Mombasa,2026-06-17 10:00,2026-06-17 15:00,,opened,J. Otieno,,Routine inspection flagged vibration anomaly
+WO-10528,P2009,Pump,Nairobi,05-31-2026 13:00,06-01-2026 11:00,06-01-2026 12:22,Complete,,23.4,Scheduled preventive maintenance
+WO-10164,V2006,Valve,Mombasa,02/05/2026 16:00,05/05/2026 00:00,,In Progress,,,Escalated from HSE early-warning alert
+WO-10041,P2002,Pump,Mombasa,07-08-2026 23:00,07-10-2026 21:00,07-10-2026 22:00,completed,B. Njoroge,47.0,
+WO-10337,P2002,Pump,Mombasa,04-01-2026 03:00,04-01-2026 10:00,04-01-2026 05:17,completed,,2.3,Escalated from HSE early-warning alert
+WO-10079,V2023,Valve,Kisumu,16/06/2026 10:00,18/06/2026 09:00,,OPEN,,,
+WO-10358,V2021,Valve,Kisumu,05-21-2026 12:00,05-22-2026 10:00,,OPEN,R. Achieng,,Escalated from HSE early-warning alert
+WO-10028,V2013,Valve,Nairobi,2026-06-12 14:00,2026-06-15 11:00,2026-06-15 18:17,Closed,,76.3,Scheduled preventive maintenance
+WO-10463,P2002,Pump,Mombasa,06-20-2026 03:00,06-22-2026 05:00,06-22-2026 18:44,Complete,A. Wanjiru,63.7,
+WO-10308,V2012,Valve,Nairobi,18/06/2026 10:00,19/06/2026 18:00,,open,F. Muthoni,,Scheduled preventive maintenance
+WO-10458,P2008,Pump,Nairobi,2026-05-24 07:00,2026-05-25 08:00,2026-05-25 07:34,completed,,24.6,Routine inspection flagged vibration anomaly
+WO-10482,P2018,Pump,Kisumu,2026-04-20 21:00,2026-04-23 19:00,,Past Due,,,
+WO-10084,V2006,Valve,Mombasa,16/06/2026 21:00,19/06/2026 20:00,,Past Due,,,Pressure drop reported by depot operator
+WO-10062,P2008,Pump,Nairobi,06-18-2026 01:00,06-18-2026 23:00,,overdue,P. Kiptoo,,Pressure drop reported by depot operator
+WO-10594,P2010,Pump,Nairobi,2026-06-14 06:00,2026-06-16 07:00,2026-06-16 07:58,Completed,,50.0,Pressure drop reported by depot operator
+WO-10136,V2021,Valve,Kisumu,04-02-2026 15:00,04-05-2026 05:00,,OPEN,D. Omondi,,
+WO-10111,P2016,Pump,Kisumu,04-11-2026 05:00,04-12-2026 14:00,04-12-2026 21:40,completed,,40.7,
+WO-10194,V2005,Valve,Mombasa,2026-06-10 04:00,2026-06-12 19:00,,Open,,,
+WO-10390,V2023,Valve,Kisumu,10/06/2026 11:00,12/06/2026 20:00,13/06/2026 13:49,COMPLETE,D. Omondi,74.8,Escalated from HSE early-warning alert
+WO-10043,P2000,Pump,Mombasa,2026-06-02 01:00,2026-06-02 09:00,2026-06-02 07:04,Complete,B. Njoroge,6.1,
+WO-10385,P2017,Pump,Kisumu,17/04/2026 19:00,18/04/2026 03:00,18/04/2026 00:51,completed,,5.9,Routine inspection flagged vibration anomaly
+WO-10129,V2006,Valve,Mombasa,2026-06-19 01:00,2026-06-19 09:00,,OPEN,B. Njoroge,,Scheduled preventive maintenance
+WO-10549,P2010,Pump,Nairobi,05-23-2026 16:00,05-24-2026 17:00,05-24-2026 20:43,Completed,,28.7,Routine inspection flagged vibration anomaly
+WO-10218,V2015,Valve,Nairobi,01/07/2026 08:00,02/07/2026 15:00,02/07/2026 22:37,Closed,P. Kiptoo,38.6,Routine inspection flagged vibration anomaly
+WO-10096,P2010,Pump,Nairobi,05-26-2026 05:00,05-28-2026 15:00,05-28-2026 12:26,Completed,F. Muthoni,55.4,Pressure drop reported by depot operator
+WO-10124,P2010,Pump,Nairobi,08/06/2026 21:00,11/06/2026 16:00,11/06/2026 17:12,Closed,,68.2,Pressure drop reported by depot operator
+WO-10577,P2018,Pump,Kisumu,05/06/2026 00:00,06/06/2026 07:00,,OPEN,D. Omondi,,Pressure drop reported by depot operator
+WO-10226,P2017,Pump,Kisumu,06/04/2026 19:00,08/04/2026 12:00,08/04/2026 11:41,Complete,,40.7,Routine inspection flagged vibration anomaly
+WO-10177,P2008,Pump,nairobi,04-10-2026 16:00,04-12-2026 15:00,,open,S. Mwangi,,Routine inspection flagged vibration anomaly
+WO-10563,P2018,Pump,Kisumu,2026-06-10 01:00,2026-06-11 02:00,2026-06-11 00:44,Completed,,23.7,
+WO-10589,V2004,Valve,Mombasa,2026-06-05 10:00,2026-06-07 18:00,2026-06-07 23:47,Complete,,61.8,Routine inspection flagged vibration anomaly
+WO-10576,P2002,Pump,Mombasa,25/04/2026 23:00,27/04/2026 00:00,26/04/2026 21:29,COMPLETE,,22.5,Escalated from HSE early-warning alert
+WO-10103,P2016,Pump,Kisumu,2026-05-25 06:00,2026-05-26 17:00,2026-05-26 21:04,Closed,,39.1,
+WO-10081,V2012,Valve,Nairobi,26/04/2026 23:00,28/04/2026 04:00,,In Progress,S. Mwangi,,
+WO-10370,P2008,Pump,Nairobi,06-14-2026 20:00,06-17-2026 02:00,,open,F. Muthoni,,
+WO-10360,P2018,Pump,Kisumu,05-13-2026 22:00,05-15-2026 08:00,05-15-2026 06:10,Complete,R. Achieng,32.2,Routine inspection flagged vibration anomaly
+WO-10264,V2015,Valve,Nairobi,30/05/2026 19:00,01/06/2026 18:00,01/06/2026 08:51,COMPLETE,,37.9,
+WO-10567,V2007,Valve,Mombasa,2026-05-20 20:00,2026-05-21 14:00,,Past Due,J. Otieno,,Pressure drop reported by depot operator
+WO-10227,P2003,Pump,Mombasa,03/05/2026 21:00,06/05/2026 08:00,06/05/2026 07:47,Complete,,58.8,Scheduled preventive maintenance
+WO-10301,P2001,Pump,Mombasa,2026-04-26 15:00,2026-04-28 12:00,2026-04-28 18:05,Complete,J. Otieno,51.1,Routine inspection flagged vibration anomaly
+WO-10275,P2016,Pump,Kisumu,04/06/2026 13:00,07/06/2026 12:00,07/06/2026 06:38,completed,,65.6,Scheduled preventive maintenance
+WO-10386,P2001,Pump,Mombasa,04-26-2026 17:00,04-29-2026 13:00,,Past Due,,,
+WO-10263,V2012,Valve,Nairobi,06-21-2026 06:00,06-24-2026 03:00,,Past Due,,,Escalated from HSE early-warning alert
+WO-10478,P2018,Pump,Kisumu,06-01-2026 13:00,06-02-2026 02:00,06-02-2026 06:21,completed,,17.4,Pressure drop reported by depot operator
+WO-10253,V2022,Valve,Kisumu,04-01-2026 10:00,04-02-2026 06:00,04-02-2026 13:38,COMPLETE,R. Achieng,27.6,Routine inspection flagged vibration anomaly
+WO-10171,V2013,Valve,Nairobi,19/05/2026 19:00,22/05/2026 15:00,22/05/2026 06:47,Completed,,59.8,Pressure drop reported by depot operator
+WO-10237,V2021,Valve,Kisumu,2026-04-07 19:00,2026-04-09 06:00,2026-04-09 09:49,COMPLETE,,38.8,
+WO-10401,P2002,Pump,Mombasa,2026-05-29 06:00,2026-05-31 16:00,2026-05-31 14:10,Complete,J. Otieno,56.2,Pressure drop reported by depot operator
+WO-10139,P2000,Pump,Mombasa,06-25-2026 03:00,06-27-2026 01:00,06-27-2026 08:05,completed,J. Otieno,53.1,
+WO-10303,V2022,Valve,Kisumu,04-29-2026 20:00,05-02-2026 03:00,,Past Due,,,Escalated from HSE early-warning alert
+WO-10267,V2005,Valve,Mombasa,05-09-2026 19:00,05-11-2026 17:00,05-11-2026 14:52,Closed,,43.9,Routine inspection flagged vibration anomaly
+WO-10581,V2005,Valve,Mombasa,2026-04-25 04:00,2026-04-27 16:00,,Overdue,,,Scheduled preventive maintenance
+WO-10379,V2005,Valve,Mombasa,03/07/2026 02:00,03/07/2026 16:00,03/07/2026 13:52,Complete,A. Wanjiru,11.9,
+WO-10212,V2022,Valve,Kisumu,06-14-2026 08:00,06-16-2026 09:00,06-16-2026 23:49,Complete,R. Achieng,63.8,
+WO-10198,V2022,Valve,Kisumu,04-14-2026 01:00,04-14-2026 09:00,,IN-PROGRESS,R. Achieng,,
+WO-10403,V2020,Valve,Kisumu,2026-05-13 01:00,2026-05-15 05:00,2026-05-15 14:21,Complete,,61.4,
+WO-10015,V2013,Valve,Nairobi,2026-04-17 19:00,2026-04-19 20:00,2026-04-20 05:45,Closed,,58.8,Scheduled preventive maintenance
+WO-10163,V2015,Valve,nairobi,10/05/2026 03:00,11/05/2026 11:00,,OVERDUE,,,
+WO-10445,V2015,Valve,Nairobi,07-08-2026 05:00,07-08-2026 17:00,,Open,,,Routine inspection flagged vibration anomaly
+WO-10411,V2021,Valve,Kisumu,2026-04-29 10:00,2026-04-29 14:00,,Overdue,,,Pressure drop reported by depot operator
+WO-10419,V2022,Valve,Kisumu,15/04/2026 19:00,18/04/2026 08:00,,in progress,,,
+WO-10037,P2002,Pump,Mombasa,05-25-2026 14:00,05-26-2026 13:00,05-26-2026 13:11,Completed,,23.2,Scheduled preventive maintenance
+WO-10570,V2012,Valve,Nairobi,15/04/2026 19:00,18/04/2026 10:00,,open,,,Scheduled preventive maintenance
+WO-10206,V2023,Valve,Kisumu,05-17-2026 12:00,05-20-2026 05:00,05-20-2026 07:16,Complete,,67.3,
+WO-10295,P2002,Pump,Mombasa,2026-06-04 11:00,2026-06-06 13:00,2026-06-06 07:05,Complete,,44.1,
+WO-10569,V2021,Valve,Kisumu,2026-04-16 11:00,2026-04-17 10:00,,overdue,,,Routine inspection flagged vibration anomaly
+WO-10073,P2008,Pump,Nairobi,06-22-2026 03:00,06-22-2026 22:00,,in progress,,,Pressure drop reported by depot operator
+WO-10439,V2023,Valve,Kisumu,2026-04-23 20:00,2026-04-25 12:00,,in progress,,,Pressure drop reported by depot operator
+WO-10104,P2017,Pump,Kisumu,2026-05-03 15:00,2026-05-05 08:00,,OPEN,,,
+WO-10343,V2023,Valve,Kisumu,2026-06-20 13:00,2026-06-22 05:00,2026-06-22 07:37,completed,D. Omondi,42.6,Pressure drop reported by depot operator
+WO-10016,P2018,Pump,Kisumu,03/06/2026 15:00,06/06/2026 14:00,06/06/2026 10:04,Completed,,67.1,
+WO-10091,V2005,Valve,Mombasa,16/05/2026 21:00,18/05/2026 13:00,19/05/2026 00:43,Closed,J. Otieno,51.7,
+WO-10088,P2008,Pump,Nairobi,2026-05-25 11:00,2026-05-27 23:00,2026-05-28 02:20,completed,P. Kiptoo,63.3,Routine inspection flagged vibration anomaly
+WO-10423,P2002,Pump,Mombasa,05-07-2026 07:00,05-09-2026 15:00,05-09-2026 06:56,completed,,47.9,Escalated from HSE early-warning alert
+WO-10205,V2023,Valve,Kisumu,2026-05-01 22:00,2026-05-02 06:00,,Open,,,Scheduled preventive maintenance
+WO-10102,P2018,Pump,Kisumu,06-16-2026 06:00,06-17-2026 19:00,,in progress,D. Omondi,,Routine inspection flagged vibration anomaly
+WO-10238,V2006,Valve,Mombasa,04-08-2026 15:00,04-08-2026 22:00,,Overdue,B. Njoroge,,Escalated from HSE early-warning alert
+WO-10580,V2004,Valve,Mombasa,04-12-2026 04:00,04-12-2026 21:00,,overdue,,,Routine inspection flagged vibration anomaly
+WO-10246,P2010,Pump,Nairobi,21/04/2026 21:00,22/04/2026 05:00,22/04/2026 05:55,Closed,,8.9,Pressure drop reported by depot operator
+WO-10157,V2012,Valve,Nairobi,2026-06-17 22:00,2026-06-19 01:00,,opened,S. Mwangi,,Escalated from HSE early-warning alert
+WO-10326,V2014,Valve,Nairobi,2026-04-26 04:00,2026-04-28 18:00,,in progress,,,Routine inspection flagged vibration anomaly
+WO-10133,V2005,Valve,Mombasa,22/06/2026 00:00,22/06/2026 08:00,,open,,,
+WO-10408,V2006,Valve,Mombasa,2026-06-19 09:00,2026-06-22 08:00,,OVERDUE,B. Njoroge,,Pressure drop reported by depot operator
+WO-10426,P2008,Pump,Nairobi,2026-06-12 16:00,2026-06-13 19:00,2026-06-13 17:02,COMPLETE,,25.0,
+WO-10018,V2007,Valve,Mombasa,26/06/2026 14:00,28/06/2026 11:00,,Past Due,B. Njoroge,,
+WO-10578,P2008,Pump,Nairobi,2026-04-08 17:00,2026-04-11 08:00,2026-04-11 07:47,Complete,P. Kiptoo,62.8,
+WO-10501,V2023,Valve,Kisumu,15/05/2026 22:00,16/05/2026 21:00,,Open,,,Escalated from HSE early-warning alert
+WO-10359,V2004,Valve,Mombasa,12/05/2026 11:00,13/05/2026 20:00,,OPEN,J. Otieno,,Scheduled preventive maintenance
+WO-10274,V2005,Valve,Mombasa,04-08-2026 19:00,04-11-2026 03:00,,opened,,,Routine inspection flagged vibration anomaly
+WO-10472,V2007,Valve,Mombasa,27/04/2026 05:00,30/04/2026 03:00,30/04/2026 19:44,Complete,,86.7,Scheduled preventive maintenance
+WO-10543,V2014,Valve,Nairobi,2026-04-23 17:00,2026-04-24 20:00,,In Progress,,,Pressure drop reported by depot operator
+WO-10311,V2015,Valve,Nairobi,06-19-2026 16:00,06-21-2026 15:00,06-21-2026 17:43,COMPLETE,P. Kiptoo,49.7,Escalated from HSE early-warning alert
+WO-10533,V2004,Valve,Mombasa,04-04-2026 10:00,04-06-2026 19:00,04-06-2026 23:37,COMPLETE,B. Njoroge,61.6,Escalated from HSE early-warning alert
+WO-10500,P2001,Pump,Mombasa,04-28-2026 10:00,04-30-2026 10:00,04-30-2026 07:08,Completed,,45.1,Routine inspection flagged vibration anomaly
+WO-10268,V2023,Valve,Kisumu,2026-05-10 08:00,2026-05-11 15:00,,in progress,,,Scheduled preventive maintenance
+WO-10034,V2004,Valve,Mombasa,05-19-2026 14:00,05-21-2026 04:00,05-21-2026 13:01,COMPLETE,A. Wanjiru,47.0,Routine inspection flagged vibration anomaly
+WO-10181,V2014,Valve,Nairobi,10/06/2026 20:00,11/06/2026 15:00,,In-Progress,P. Kiptoo,,
+WO-10184,V2013,Valve,Nairobi,05-13-2026 01:00,05-13-2026 11:00,,opened,,,Scheduled preventive maintenance
+WO-10207,V2014,Valve,Nairobi,14/05/2026 15:00,16/05/2026 19:00,16/05/2026 19:15,completed,S. Mwangi,52.3,Pressure drop reported by depot operator
+WO-10480,V2023,Valve,Kisumu,2026-05-16 08:00,2026-05-17 06:00,,OPEN,,,Scheduled preventive maintenance
+WO-10094,P2008,Pump,Nairobi,07-01-2026 18:00,07-04-2026 08:00,07-03-2026 15:59,Closed,,46.0,Escalated from HSE early-warning alert
+WO-10526,P2009,Pump,Nairobi,04-05-2026 15:00,04-05-2026 19:00,04-05-2026 16:47,Complete,,1.8,Pressure drop reported by depot operator
+WO-10442,P2017,Pump,Kisumu,2026-06-26 23:00,2026-06-28 17:00,,OVERDUE,D. Omondi,,
+WO-10353,V2014,Valve,Nairobi,2026-06-12 08:00,2026-06-13 11:00,2026-06-13 09:36,COMPLETE,,25.6,Escalated from HSE early-warning alert
+WO-10122,P2000,Pump,Mombasa,07-05-2026 01:00,07-06-2026 14:00,07-06-2026 19:11,completed,J. Otieno,42.2,Escalated from HSE early-warning alert
+WO-10560,P2019,Pump,Kisumu,06-26-2026 00:00,06-26-2026 08:00,06-26-2026 10:59,Completed,,11.0,
+WO-10364,P2003,Pump,Mombasa,30/06/2026 05:00,01/07/2026 02:00,01/07/2026 11:28,Closed,B. Njoroge,30.5,Scheduled preventive maintenance
+WO-10078,P2019,Pump,Kisumu,27/04/2026 19:00,29/04/2026 23:00,30/04/2026 06:35,Completed,D. Omondi,59.6,Routine inspection flagged vibration anomaly
+WO-10350,P2018,Pump,Kisumu,09/05/2026 19:00,11/05/2026 08:00,11/05/2026 13:52,completed,,42.9,Escalated from HSE early-warning alert
+WO-10061,V2005,Valve,Mombasa,2026-05-08 23:00,2026-05-09 10:00,2026-05-09 02:17,completed,B. Njoroge,3.3,Pressure drop reported by depot operator
+WO-10251,V2020,Valve,Kisumu,2026-06-29 13:00,2026-06-30 14:00,2026-06-30 20:47,Completed,D. Omondi,31.8,
+WO-10125,V2021,Valve,Kisumu,07/04/2026 16:00,10/04/2026 09:00,,IN-PROGRESS,D. Omondi,,Scheduled preventive maintenance
+WO-10450,V2013,Valve,Nairobi,07-07-2026 06:00,07-08-2026 12:00,,in progress,S. Mwangi,,Routine inspection flagged vibration anomaly
+WO-10447,P2003,Pump,Mombasa,04-03-2026 02:00,04-05-2026 09:00,04-05-2026 00:14,Closed,,46.2,Pressure drop reported by depot operator
+WO-10599,V2023,Valve,Kisumu,04-01-2026 13:00,04-03-2026 04:00,04-03-2026 03:10,Complete,,38.2,
+WO-10347,P2019,Pump,Kisumu,06-28-2026 13:00,06-29-2026 23:00,06-29-2026 22:36,Completed,,33.6,
+WO-10496,P2001,Pump,Mombasa,30/06/2026 16:00,03/07/2026 00:00,02/07/2026 22:03,completed,,54.1,Pressure drop reported by depot operator
+WO-10557,V2021,Valve,Kisumu,2026-07-05 14:00,2026-07-06 23:00,,Past Due,,,Pressure drop reported by depot operator
+WO-10397,P2011,Pump,Nairobi,2026-04-07 09:00,2026-04-09 23:00,2026-04-09 19:18,Completed,S. Mwangi,58.3,
+WO-10067,P2000,Pump,Mombasa,04-16-2026 09:00,04-16-2026 22:00,04-16-2026 08:16,Complete,A. Wanjiru,0.5,Scheduled preventive maintenance
+WO-10024,P2000,Pump,Mombasa,05-15-2026 23:00,05-17-2026 05:00,05-17-2026 08:52,Complete,B. Njoroge,33.9,
+WO-10464,V2021,Valve,Kisumu,19/04/2026 20:00,21/04/2026 21:00,,overdue,D. Omondi,,Routine inspection flagged vibration anomaly
+WO-10509,V2023,Valve,Kisumu,2026-04-12 01:00,2026-04-12 08:00,2026-04-12 18:13,COMPLETE,R. Achieng,17.2,
+WO-10397,P2011,Pump,Nairobi,2026-04-07 09:00,2026-04-09 23:00,2026-04-09 19:18,Completed,S. Mwangi,58.3,
+WO-10126,P2018,Pump,Kisumu,2026-04-05 04:00,2026-04-07 05:00,2026-04-07 02:32,Completed,,46.5,
+WO-10548,V2005,Valve,Mombasa,15/06/2026 01:00,17/06/2026 09:00,,In Progress,J. Otieno,,Pressure drop reported by depot operator
+WO-10334,V2023,Valve,Kisumu,07-03-2026 16:00,07-05-2026 09:00,,opened,,,Pressure drop reported by depot operator
+WO-10410,P2000,Pump,Mombasa,03/05/2026 06:00,05/05/2026 04:00,05/05/2026 05:16,Completed,,47.3,Escalated from HSE early-warning alert
+WO-10178,V2012,Valve,nairobi,05-12-2026 05:00,05-14-2026 13:00,05-14-2026 02:48,Closed,S. Mwangi,45.8,Escalated from HSE early-warning alert
+WO-10431,V2004,Valve,Mombasa,2026-05-29 12:00,2026-05-30 01:00,,overdue,B. Njoroge,,Routine inspection flagged vibration anomaly
+WO-10565,V2021,Valve,Kisumu,2026-06-07 04:00,2026-06-07 09:00,,open,,,Pressure drop reported by depot operator
+WO-10135,P2009,Pump,Nairobi,20/04/2026 16:00,22/04/2026 04:00,22/04/2026 11:39,Completed,S. Mwangi,43.7,
+WO-10223,V2023,Valve,Kisumu,05-27-2026 06:00,05-30-2026 01:00,05-30-2026 09:00,Completed,R. Achieng,75.0,Escalated from HSE early-warning alert
+WO-10575,P2019,Pump,Kisumu,2026-05-15 01:00,2026-05-17 08:00,,open,,,Scheduled preventive maintenance
+WO-10568,V2015,Valve,Nairobi,06-07-2026 21:00,06-09-2026 10:00,06-09-2026 11:07,Closed,,38.1,Routine inspection flagged vibration anomaly
+WO-10596,P2003,Pump,Mombasa,04-29-2026 00:00,04-30-2026 15:00,,opened,J. Otieno,,Pressure drop reported by depot operator
+WO-10093,P2016,Pump,Kisumu,06-25-2026 02:00,06-27-2026 06:00,06-27-2026 04:10,COMPLETE,R. Achieng,50.2,Scheduled preventive maintenance
+WO-10489,P2003,Pump,Mombasa,10/04/2026 16:00,11/04/2026 12:00,11/04/2026 11:30,Completed,,19.5,Scheduled preventive maintenance
+WO-10069,P2009,Pump,Nairobi,07-08-2026 09:00,07-09-2026 08:00,,IN-PROGRESS,P. Kiptoo,,Pressure drop reported by depot operator
+WO-10036,V2020,Valve,Kisumu,05/05/2026 06:00,08/05/2026 02:00,08/05/2026 09:51,Complete,,75.9,
+WO-10296,V2014,Valve,Nairobi,15/05/2026 06:00,17/05/2026 01:00,,Open,P. Kiptoo,,Escalated from HSE early-warning alert
+WO-10160,P2017,Pump,Kisumu,05-24-2026 08:00,05-24-2026 15:00,05-24-2026 07:17,completed,,0.5,Pressure drop reported by depot operator
+WO-10362,P2016,Pump,Kisumu,07-01-2026 01:00,07-01-2026 18:00,07-01-2026 20:28,Completed,D. Omondi,19.5,Pressure drop reported by depot operator
+WO-10011,P2019,Pump,Kisumu,06-22-2026 02:00,06-24-2026 09:00,,Open,R. Achieng,,
+WO-10144,P2003,Pump,Mombasa,05-04-2026 13:00,05-07-2026 06:00,,OVERDUE,,,Pressure drop reported by depot operator
+WO-10405,V2022,Valve,Kisumu,2026-05-31 13:00,2026-06-01 05:00,2026-05-31 21:49,Completed,D. Omondi,8.8,Routine inspection flagged vibration anomaly
+WO-10513,V2004,Valve,Mombasa,06-18-2026 08:00,06-18-2026 20:00,06-19-2026 00:38,Complete,,16.6,
+WO-10127,V2004,Valve,Mombasa,2026-05-03 05:00,2026-05-03 22:00,2026-05-04 10:48,Complete,B. Njoroge,29.8,
+WO-10414,V2020,Valve,Kisumu,2026-05-31 08:00,2026-05-31 20:00,2026-06-01 00:13,COMPLETE,,16.2,Scheduled preventive maintenance
+WO-10302,P2002,Pump,Mombasa,2026-05-24 06:00,2026-05-25 10:00,2026-05-25 10:27,Completed,,28.5,Scheduled preventive maintenance
+WO-10009,P2002,Pump,Mombasa,23/05/2026 05:00,24/05/2026 16:00,25/05/2026 00:15,Closed,J. Otieno,43.3,
+WO-10530,V2014,Valve,Nairobi,07-06-2026 22:00,07-07-2026 17:00,07-07-2026 17:53,Closed,F. Muthoni,19.9,Scheduled preventive maintenance
+WO-10176,V2005,Valve,Mombasa,30/04/2026 12:00,02/05/2026 09:00,02/05/2026 12:16,Completed,,48.3,
+WO-10231,V2005,Valve,Mombasa,07-06-2026 12:00,07-06-2026 23:00,07-07-2026 03:41,Complete,B. Njoroge,15.7,
+WO-10210,V2023,Valve,Kisumu,22/05/2026 12:00,22/05/2026 21:00,23/05/2026 06:50,Complete,D. Omondi,18.8,
+WO-10128,V2006,Valve,Mombasa,27/04/2026 02:00,29/04/2026 13:00,29/04/2026 11:45,Closed,,57.8,Routine inspection flagged vibration anomaly
+WO-10143,P2003,Pump,Mombasa,2026-06-07 12:00,2026-06-10 05:00,2026-06-10 11:35,Completed,B. Njoroge,71.6,Scheduled preventive maintenance
+WO-10241,V2015,Valve,Nairobi,06-19-2026 13:00,06-21-2026 23:00,06-21-2026 16:49,Completed,S. Mwangi,51.8,
+WO-10007,V2015,Valve,Nairobi,06-24-2026 20:00,06-26-2026 08:00,06-26-2026 09:54,Closed,,37.9,
+WO-10053,P2011,Pump,Nairobi,22/06/2026 01:00,22/06/2026 12:00,22/06/2026 13:27,completed,S. Mwangi,12.5,Pressure drop reported by depot operator
+WO-10298,V2022,Valve,Kisumu,2026-06-12 23:00,2026-06-15 05:00,,opened,,,Escalated from HSE early-warning alert
+WO-10310,V2004,Valve,Mombasa,06-04-2026 16:00,06-07-2026 09:00,06-07-2026 13:37,COMPLETE,,69.6,
+WO-10254,P2009,Pump,Nairobi,2026-06-20 02:00,2026-06-21 03:00,2026-06-20 22:26,COMPLETE,,20.4,Scheduled preventive maintenance
+WO-10527,V2015,Valve,Nairobi,2026-05-04 15:00,2026-05-05 21:00,2026-05-05 15:34,Closed,P. Kiptoo,24.6,Escalated from HSE early-warning alert
+WO-10485,P2011,Pump,Nairobi,05/04/2026 23:00,07/04/2026 22:00,,open,,,Scheduled preventive maintenance
+WO-10008,P2017,Pump,Kisumu,05-03-2026 10:00,05-04-2026 10:00,,in progress,D. Omondi,,
+WO-10156,P2018,Pump,Kisumu,2026-05-08 03:00,2026-05-09 09:00,,open,,,
+WO-10027,P2019,Pump,Kisumu,26/05/2026 17:00,27/05/2026 19:00,,OPEN,D. Omondi,,
+WO-10266,V2014,Valve,Nairobi,2026-04-08 18:00,2026-04-09 07:00,,Overdue,,,Scheduled preventive maintenance
+WO-10314,V2012,Valve,Nairobi,06-12-2026 00:00,06-14-2026 23:00,,OPEN,S. Mwangi,,
+WO-10064,V2020,Valve,Kisumu,2026-04-20 10:00,2026-04-21 11:00,2026-04-21 16:09,COMPLETE,,30.2,
+WO-10470,P2019,Pump,Kisumu,06-21-2026 10:00,06-21-2026 17:00,06-21-2026 20:00,completed,R. Achieng,10.0,Scheduled preventive maintenance
+WO-10255,P2009,Pump,Nairobi,2026-05-31 02:00,2026-06-02 19:00,2026-06-02 23:30,COMPLETE,,69.5,
+WO-10532,V2023,Valve,Kisumu,06-14-2026 07:00,06-14-2026 20:00,06-14-2026 18:04,COMPLETE,D. Omondi,11.1,Escalated from HSE early-warning alert
+WO-10153,V2023,Valve,Kisumu,2026-05-22 22:00,2026-05-24 09:00,,overdue,,,Routine inspection flagged vibration anomaly
+WO-10048,V2007,Valve,Mombasa,12/05/2026 06:00,14/05/2026 05:00,14/05/2026 12:19,Completed,B. Njoroge,54.3,Scheduled preventive maintenance
+WO-10208,V2023,Valve,Kisumu,27/06/2026 15:00,28/06/2026 14:00,28/06/2026 12:37,completed,R. Achieng,21.6,
+WO-10539,V2012,Valve,Nairobi,2026-04-28 11:00,2026-04-29 07:00,2026-04-29 08:18,completed,S. Mwangi,21.3,
+WO-10287,V2013,Valve,Nairobi,04-15-2026 01:00,04-17-2026 12:00,,in progress,P. Kiptoo,,Scheduled preventive maintenance
+WO-10001,V2014,Valve,Nairobi,2026-05-12 22:00,2026-05-13 03:00,2026-05-13 02:08,Completed,P. Kiptoo,4.1,Escalated from HSE early-warning alert
+WO-10427,V2020,Valve,Kisumu,05-16-2026 06:00,05-17-2026 11:00,05-18-2026 03:53,Completed,,45.9,Routine inspection flagged vibration anomaly
+WO-10341,V2013,Valve,Nairobi,05-30-2026 00:00,05-31-2026 23:00,05-31-2026 17:27,Completed,,41.5,Routine inspection flagged vibration anomaly
+WO-10269,P2002,Pump,Mombasa,14/06/2026 20:00,17/06/2026 08:00,,open,,,
+WO-10265,P2008,Pump,Nairobi,2026-05-20 18:00,2026-05-23 08:00,,IN-PROGRESS,,,Escalated from HSE early-warning alert
+WO-10551,V2014,Valve,Nairobi,18/05/2026 22:00,20/05/2026 14:00,20/05/2026 20:37,COMPLETE,,46.6,Routine inspection flagged vibration anomaly
+WO-10538,V2013,Valve,Nairobi,30/06/2026 09:00,02/07/2026 12:00,02/07/2026 05:48,completed,S. Mwangi,44.8,
+WO-10484,P2019,Pump,Kisumu,06-10-2026 16:00,06-12-2026 19:00,06-13-2026 01:49,Complete,,57.8,Pressure drop reported by depot operator
+WO-10368,V2006,Valve,Mombasa,04-02-2026 04:00,04-04-2026 04:00,04-04-2026 08:07,completed,,52.1,
+WO-10095,V2021,Valve,Kisumu,02/07/2026 09:00,03/07/2026 10:00,03/07/2026 03:40,COMPLETE,D. Omondi,18.7,
+WO-10585,P2003,Pump,Mombasa,2026-06-27 02:00,2026-06-29 03:00,2026-06-29 00:15,Closed,A. Wanjiru,46.3,Scheduled preventive maintenance
+WO-10352,V2015,Valve,Nairobi,05-24-2026 11:00,05-26-2026 11:00,05-26-2026 11:25,Complete,,48.4,Escalated from HSE early-warning alert
+WO-10042,V2013,Valve,Nairobi,2026-04-25 03:00,2026-04-26 12:00,,Overdue,P. Kiptoo,,Routine inspection flagged vibration anomaly
+WO-10361,P2000,Pump,Mombasa,23/04/2026 17:00,25/04/2026 15:00,,In Progress,,,
+WO-10459,V2004,Valve,Mombasa,2026-04-23 23:00,2026-04-24 17:00,2026-04-24 10:37,Completed,J. Otieno,11.6,Pressure drop reported by depot operator
+WO-10316,V2005,Valve,Mombasa,17/04/2026 00:00,17/04/2026 11:00,,OVERDUE,,,
+WO-10116,V2020,Valve,Kisumu,05-19-2026 15:00,05-21-2026 10:00,,opened,,,
+WO-10424,V2013,Valve,Nairobi,2026-06-07 17:00,2026-06-08 20:00,,Overdue,S. Mwangi,,Pressure drop reported by depot operator
+WO-10045,V2005,Valve,Mombasa,07-03-2026 03:00,07-03-2026 22:00,,OPEN,B. Njoroge,,Pressure drop reported by depot operator
+WO-10161,V2004,Valve,Mombasa,01/06/2026 10:00,02/06/2026 11:00,02/06/2026 14:23,completed,J. Otieno,28.4,Escalated from HSE early-warning alert
+WO-10496,P2001,Pump,Mombasa,30/06/2026 16:00,03/07/2026 00:00,02/07/2026 22:03,completed,,54.1,Pressure drop reported by depot operator
+WO-10117,P2019,Pump,kisumu,2026-04-16 10:00,2026-04-17 05:00,2026-04-17 04:02,Closed,,18.0,
+WO-10288,P2018,Pump,Kisumu,2026-06-11 11:00,2026-06-14 02:00,,In-Progress,R. Achieng,,
+WO-10077,P2019,Pump,Kisumu,03/05/2026 18:00,05/05/2026 11:00,05/05/2026 11:54,COMPLETE,,-41.9,Scheduled preventive maintenance
+WO-10541,V2020,Valve,Kisumu,2026-04-21 08:00,2026-04-22 15:00,2026-04-22 08:29,Complete,,24.5,Routine inspection flagged vibration anomaly
+WO-10389,V2020,Valve,Kisumu,04-11-2026 20:00,04-13-2026 23:00,04-14-2026 05:55,COMPLETE,,57.9,Escalated from HSE early-warning alert
+WO-10574,P2017,Pump,Kisumu,2026-04-09 21:00,2026-04-11 20:00,2026-04-11 11:28,COMPLETE,,38.5,Routine inspection flagged vibration anomaly
+WO-10412,V2012,Valve,Nairobi,04-23-2026 03:00,04-25-2026 22:00,04-25-2026 22:52,Closed,,67.9,
+WO-10063,P2017,Pump,Kisumu,06-28-2026 03:00,06-28-2026 15:00,06-28-2026 21:51,COMPLETE,,18.9,Routine inspection flagged vibration anomaly
+WO-10338,P2018,Pump,Kisumu,15/05/2026 14:00,17/05/2026 19:00,,Overdue,,,
+WO-10315,V2012,Valve,Nairobi,02/07/2026 10:00,03/07/2026 00:00,03/07/2026 07:10,Closed,S. Mwangi,21.2,
+WO-10299,V2005,Valve,Mombasa,2026-05-25 10:00,2026-05-26 17:00,2026-05-26 16:33,Completed,J. Otieno,30.6,Escalated from HSE early-warning alert
+WO-10399,V2014,Valve,Nairobi,2026-04-22 01:00,2026-04-23 08:00,2026-04-23 06:33,Complete,P. Kiptoo,29.6,
+WO-10230,V2023,Valve,Kisumu,04-27-2026 04:00,04-28-2026 05:00,,In-Progress,,,Scheduled preventive maintenance
+WO-10297,P2018,Pump,Kisumu,2026-05-06 04:00,2026-05-08 20:00,2026-05-09 03:26,Complete,,71.4,Routine inspection flagged vibration anomaly
+WO-10186,V2005,Valve,Mombasa,15/04/2026 18:00,18/04/2026 14:00,18/04/2026 12:36,Completed,J. Otieno,66.6,
+WO-10491,V2020,Valve,Kisumu,2026-06-24 04:00,2026-06-24 17:00,,IN-PROGRESS,,,
+WO-10199,P2008,Pump,Nairobi,05-10-2026 20:00,05-11-2026 21:00,,overdue,S. Mwangi,,
+WO-10420,V2015,Valve,nairobi,2026-05-30 14:00,2026-06-01 20:00,2026-06-01 19:36,Closed,P. Kiptoo,53.6,
+WO-10365,V2006,Valve,Mombasa,05-29-2026 08:00,06-01-2026 03:00,,In Progress,A. Wanjiru,,Scheduled preventive maintenance
+WO-10498,V2012,Valve,Nairobi,05-14-2026 12:00,05-15-2026 07:00,05-15-2026 04:32,COMPLETE,P. Kiptoo,16.5,Pressure drop reported by depot operator
+WO-10396,V2022,Valve,kisumu,05/06/2026 10:00,06/06/2026 14:00,06/06/2026 12:06,completed,,26.1,Scheduled preventive maintenance
+WO-10121,P2017,Pump,Kisumu,2026-06-29 23:00,2026-07-02 13:00,2026-07-02 23:20,Complete,,72.3,
+WO-10588,V2004,Valve,Mombasa,07/05/2026 09:00,09/05/2026 14:00,09/05/2026 21:56,completed,,60.9,
+WO-10247,P2010,Pump,Nairobi,06-25-2026 17:00,06-28-2026 15:00,06-28-2026 19:04,Completed,,74.1,Escalated from HSE early-warning alert
+WO-10307,P2001,Pump,Mombasa,06-14-2026 03:00,06-14-2026 16:00,06-14-2026 16:04,COMPLETE,A. Wanjiru,13.1,Scheduled preventive maintenance
+WO-10337,P2002,Pump,Mombasa,04-01-2026 03:00,04-01-2026 10:00,04-01-2026 05:17,completed,,2.3,Escalated from HSE early-warning alert
+WO-10507,P2002,Pump,Mombasa,2026-05-10 13:00,2026-05-13 01:00,,open,,,
+WO-10363,P2008,Pump,Nairobi,08/06/2026 18:00,09/06/2026 13:00,09/06/2026 18:47,Complete,,24.8,Scheduled preventive maintenance
+WO-10158,V2007,Valve,Mombasa,21/06/2026 20:00,23/06/2026 20:00,24/06/2026 02:00,completed,,54.0,Pressure drop reported by depot operator
+WO-10085,P2001,Pump,Mombasa,03/06/2026 05:00,05/06/2026 22:00,,OPEN,B. Njoroge,,
+WO-10469,V2007,Valve,Mombasa,08/04/2026 01:00,09/04/2026 19:00,09/04/2026 22:47,Completed,,45.8,Routine inspection flagged vibration anomaly
+WO-10225,P2019,Pump,Kisumu,2026-04-28 19:00,2026-04-30 23:00,2026-05-01 02:53,COMPLETE,,55.9,Scheduled preventive maintenance
+WO-10376,P2019,Pump,Kisumu,04-08-2026 01:00,04-10-2026 06:00,,open,,,Scheduled preventive maintenance
+WO-10262,V2014,Valve,Nairobi,02/06/2026 09:00,03/06/2026 05:00,03/06/2026 05:33,completed,P. Kiptoo,20.6,
+WO-10331,P2019,Pump,Kisumu,2026-05-06 20:00,2026-05-07 16:00,2026-05-07 19:45,completed,,23.8,
+WO-10233,V2020,Valve,Kisumu,2026-05-04 07:00,2026-05-05 11:00,,In-Progress,,,Scheduled preventive maintenance
+WO-10076,V2020,Valve,Kisumu,04-06-2026 17:00,04-09-2026 16:00,04-09-2026 20:40,Completed,,75.7,
+WO-10475,P2017,Pump,Kisumu,2026-05-30 11:00,2026-05-31 18:00,2026-06-01 02:20,COMPLETE,R. Achieng,39.3,Routine inspection flagged vibration anomaly
+WO-10540,V2021,Valve,Kisumu,20/04/2026 02:00,22/04/2026 03:00,,In-Progress,,,Pressure drop reported by depot operator
+WO-10149,P2017,Pump,Kisumu,2026-05-29 05:00,2026-05-31 23:00,2026-05-31 16:14,Closed,,59.2,
+WO-10087,P2001,Pump,Mombasa,06-20-2026 03:00,06-22-2026 16:00,,In Progress,,,Escalated from HSE early-warning alert
+WO-10457,P2003,Pump,Mombasa,05-16-2026 14:00,05-17-2026 14:00,05-17-2026 09:33,Complete,A. Wanjiru,392.0,
+WO-10421,V2005,Valve,Mombasa,2026-06-15 16:00,2026-06-18 10:00,,OPEN,B. Njoroge,,Scheduled preventive maintenance
+WO-10278,V2021,Valve,Kisumu,2026-04-15 20:00,2026-04-18 12:00,,OVERDUE,D. Omondi,,
+WO-10182,P2010,Pump,Nairobi,07-02-2026 14:00,07-03-2026 06:00,,In Progress,F. Muthoni,,
+WO-10476,P2009,Pump,nairobi,20/05/2026 14:00,23/05/2026 06:00,22/05/2026 20:46,completed,,54.8,
+WO-10520,P2016,Pump,Kisumu,05/07/2026 04:00,05/07/2026 23:00,,OVERDUE,,,Pressure drop reported by depot operator
+WO-10105,V2015,Valve,Nairobi,2026-04-12 19:00,2026-04-13 20:00,2026-04-14 00:40,Complete,P. Kiptoo,29.7,Scheduled preventive maintenance
+WO-10332,P2000,Pump,Mombasa,2026-04-21 03:00,2026-04-24 01:00,2026-04-24 08:06,Complete,A. Wanjiru,77.1,Scheduled preventive maintenance
+WO-10438,P2019,Pump,Kisumu,09/06/2026 02:00,11/06/2026 11:00,11/06/2026 09:58,Closed,R. Achieng,56.0,Scheduled preventive maintenance
+WO-10049,P2000,Pump,Mombasa,05-23-2026 15:00,05-24-2026 19:00,05-24-2026 19:52,Closed,,28.9,Routine inspection flagged vibration anomaly
+WO-10005,V2005,Valve,Mombasa,06-19-2026 08:00,06-20-2026 11:00,06-20-2026 02:37,Complete,,18.6,Escalated from HSE early-warning alert
+WO-10234,P2011,Pump,Nairobi,04-08-2026 18:00,04-11-2026 10:00,04-11-2026 09:16,completed,,63.3,Escalated from HSE early-warning alert
+WO-10486,P2018,Pump,Kisumu,20/04/2026 03:00,21/04/2026 15:00,,OPEN,,,Scheduled preventive maintenance
+WO-10546,V2005,Valve,Mombasa,2026-05-03 19:00,2026-05-06 08:00,,overdue,,,Scheduled preventive maintenance
+WO-10497,P2016,Pump,Kisumu,2026-06-11 13:00,2026-06-12 01:00,2026-06-12 02:10,Complete,,13.2,Routine inspection flagged vibration anomaly
+WO-10106,P2000,Pump,Mombasa,2026-06-21 19:00,2026-06-22 18:00,2026-06-22 22:17,COMPLETE,,27.3,Scheduled preventive maintenance
+WO-10443,P2002,Pump,mombasa,25/05/2026 15:00,27/05/2026 09:00,,open,A. Wanjiru,,Pressure drop reported by depot operator
+WO-10488,V2013,Valve,Nairobi,06-18-2026 08:00,06-18-2026 12:00,06-18-2026 08:29,Completed,F. Muthoni,0.5,
+WO-10012,P2018,Pump,Kisumu,22/06/2026 20:00,25/06/2026 16:00,,Open,D. Omondi,,
+WO-10190,V2012,Valve,Nairobi,15/04/2026 22:00,17/04/2026 10:00,17/04/2026 04:29,Complete,,30.5,
+WO-10282,P2016,Pump,Kisumu,07-06-2026 14:00,07-09-2026 07:00,07-09-2026 03:02,Complete,R. Achieng,61.0,Pressure drop reported by depot operator
+WO-10029,P2003,Pump,Mombasa,2026-05-13 07:00,2026-05-15 06:00,,Past Due,,,Scheduled preventive maintenance
+WO-10169,V2021,Valve,Kisumu,10/04/2026 10:00,13/04/2026 03:00,13/04/2026 09:00,COMPLETE,D. Omondi,71.0,
+WO-10180,V2005,Valve,Mombasa,10/06/2026 20:00,11/06/2026 20:00,,IN-PROGRESS,,,Escalated from HSE early-warning alert
+WO-10100,V2022,Valve,Kisumu,08/05/2026 21:00,10/05/2026 21:00,10/05/2026 16:15,Closed,,43.3,Routine inspection flagged vibration anomaly
+WO-10197,V2022,Valve,Kisumu,2026-06-18 11:00,2026-06-19 17:00,,OPEN,R. Achieng,,
+WO-10495,V2020,Valve,Kisumu,06-22-2026 04:00,06-22-2026 14:00,06-21-2026 23:53,COMPLETE,,0.5,Escalated from HSE early-warning alert
+WO-10591,V2023,Valve,Kisumu,06-16-2026 20:00,06-19-2026 19:00,06-19-2026 17:41,Closed,,69.7,Pressure drop reported by depot operator
+WO-10373,V2006,Valve,Mombasa,21/05/2026 13:00,22/05/2026 04:00,,Overdue,,,Escalated from HSE early-warning alert
+WO-10460,P2009,Pump,Nairobi,2026-04-23 08:00,2026-04-24 04:00,,Open,P. Kiptoo,,Routine inspection flagged vibration anomaly
+WO-10413,P2001,Pump,Mombasa,2026-04-28 20:00,2026-04-30 04:00,2026-04-30 13:21,Completed,B. Njoroge,41.4,
+WO-10131,P2010,Pump,Nairobi,2026-04-15 15:00,2026-04-16 08:00,2026-04-16 06:28,completed,,15.5,
+WO-10039,V2004,Valve,Mombasa,10/05/2026 06:00,12/05/2026 19:00,12/05/2026 20:56,Completed,A. Wanjiru,62.9,
+WO-10434,P2011,Pump,Nairobi,07-09-2026 17:00,07-12-2026 08:00,,open,F. Muthoni,,Routine inspection flagged vibration anomaly
+WO-10215,V2013,Valve,Nairobi,04-30-2026 05:00,05-02-2026 23:00,05-03-2026 03:13,Complete,,70.2,
+WO-10474,P2017,Pump,Kisumu,08/04/2026 20:00,11/04/2026 13:00,,open,R. Achieng,,Routine inspection flagged vibration anomaly
+WO-10456,P2003,Pump,Mombasa,10/06/2026 18:00,11/06/2026 01:00,,Open,B. Njoroge,,Routine inspection flagged vibration anomaly
+WO-10260,V2021,Valve,Kisumu,24/06/2026 13:00,25/06/2026 12:00,,OPEN,,,Scheduled preventive maintenance
+WO-10035,V2014,Valve,Nairobi,05-08-2026 03:00,05-09-2026 19:00,05-09-2026 21:21,Closed,,42.4,
+WO-10309,P2002,Pump,Mombasa,2026-06-09 19:00,2026-06-11 15:00,,In Progress,J. Otieno,,Routine inspection flagged vibration anomaly
+WO-10276,P2001,Pump,Mombasa,20/04/2026 04:00,21/04/2026 04:00,,overdue,J. Otieno,,Routine inspection flagged vibration anomaly
+WO-10393,P2009,Pump,Nairobi,2026-05-25 07:00,2026-05-28 03:00,2026-05-28 01:06,completed,S. Mwangi,66.1,Escalated from HSE early-warning alert
+WO-10107,P2001,Pump,Mombasa,2026-04-13 13:00,2026-04-15 22:00,,OVERDUE,B. Njoroge,,Routine inspection flagged vibration anomaly
+WO-10572,P2003,Pump,Mombasa,05-17-2026 05:00,05-18-2026 22:00,05-18-2026 18:05,COMPLETE,,37.1,Escalated from HSE early-warning alert
+WO-10524,P2001,Pump,Mombasa,10/05/2026 19:00,11/05/2026 11:00,11/05/2026 09:15,Complete,J. Otieno,14.3,
+WO-10047,V2015,Valve,Nairobi,2026-05-20 21:00,2026-05-22 19:00,,in progress,,,Escalated from HSE early-warning alert
+WO-10203,P2002,Pump,Mombasa,04-22-2026 07:00,04-23-2026 04:00,04-23-2026 02:59,completed,,20.0,Scheduled preventive maintenance
+WO-10021,V2020,Valve,Kisumu,16/05/2026 02:00,17/05/2026 00:00,17/05/2026 02:45,completed,R. Achieng,496.0,
+WO-10402,V2014,Valve,Nairobi,04/04/2026 11:00,07/04/2026 03:00,07/04/2026 01:11,Completed,P. Kiptoo,62.2,Routine inspection flagged vibration anomaly
+WO-10083,V2020,Valve,Kisumu,06-28-2026 04:00,06-29-2026 11:00,06-29-2026 10:06,completed,,30.1,Routine inspection flagged vibration anomaly
+WO-10130,V2015,Valve,Nairobi,06-21-2026 01:00,06-23-2026 15:00,06-23-2026 12:34,Closed,,59.6,Escalated from HSE early-warning alert
+WO-10415,P2010,Pump,Nairobi,16/06/2026 22:00,18/06/2026 03:00,,Open,,,Routine inspection flagged vibration anomaly
+WO-10286,P2009,Pump,Nairobi,05-20-2026 17:00,05-23-2026 13:00,05-23-2026 06:02,Closed,,61.0,Routine inspection flagged vibration anomaly
+WO-10123,P2003,Pump,Mombasa,04-13-2026 21:00,04-15-2026 22:00,04-15-2026 23:04,Closed,,50.1,Routine inspection flagged vibration anomaly
+WO-10033,P2017,Pump,Kisumu,2026-04-05 18:00,2026-04-07 00:00,2026-04-07 04:22,Closed,D. Omondi,34.4,
+WO-10516,V2013,Valve,Nairobi,04-15-2026 22:00,04-17-2026 06:00,,OPEN,,,Scheduled preventive maintenance
+WO-10019,P2017,Pump,Kisumu,04-22-2026 09:00,04-23-2026 11:00,04-23-2026 04:31,Complete,,19.5,Pressure drop reported by depot operator
+WO-10562,V2014,Valve,Nairobi,2026-07-05 11:00,2026-07-07 02:00,,In-Progress,S. Mwangi,,Scheduled preventive maintenance
+WO-10219,V2012,Valve,Nairobi,05-13-2026 09:00,05-13-2026 20:00,05-14-2026 00:40,Complete,P. Kiptoo,15.7,Escalated from HSE early-warning alert
+WO-10481,P2018,Pump,Kisumu,2026-04-06 13:00,2026-04-08 03:00,2026-04-08 00:23,Completed,,35.4,
+WO-10356,V2005,Valve,Mombasa,2026-04-12 10:00,2026-04-13 00:00,,In Progress,A. Wanjiru,,
+WO-10224,V2004,Valve,Mombasa,06-03-2026 17:00,06-05-2026 06:00,,Overdue,A. Wanjiru,,
+WO-10092,P2001,Pump,Mombasa,2026-05-27 22:00,2026-05-28 11:00,2026-05-28 15:06,Closed,J. Otieno,17.1,Escalated from HSE early-warning alert
+WO-10151,P2018,Pump,Kisumu,2026-04-05 20:00,2026-04-06 22:00,,overdue,,,Escalated from HSE early-warning alert
+WO-10597,V2014,Valve,Nairobi,2026-07-02 19:00,2026-07-03 18:00,2026-07-03 18:28,COMPLETE,,23.5,Pressure drop reported by depot operator
+WO-10317,P2009,Pump,Nairobi,30/06/2026 16:00,03/07/2026 07:00,,in progress,,,
+WO-10448,P2002,Pump,mombasa,23/05/2026 02:00,25/05/2026 06:00,,IN-PROGRESS,B. Njoroge,,Escalated from HSE early-warning alert
+WO-10522,V2006,Valve,Mombasa,23/04/2026 11:00,26/04/2026 01:00,26/04/2026 05:24,Complete,B. Njoroge,66.4,Escalated from HSE early-warning alert
+WO-10279,P2019,Pump,Kisumu,02/07/2026 12:00,03/07/2026 22:00,03/07/2026 18:52,Completed,R. Achieng,30.9,
+WO-10349,P2017,Pump,Kisumu,05-06-2026 17:00,05-08-2026 21:00,,Past Due,D. Omondi,,Escalated from HSE early-warning alert
+WO-10374,P2017,Pump,Kisumu,15/04/2026 21:00,17/04/2026 15:00,,open,,,Scheduled preventive maintenance
+WO-10400,P2018,Pump,Kisumu,2026-06-10 08:00,2026-06-11 18:00,,OPEN,,,Pressure drop reported by depot operator
+WO-10257,P2002,Pump,Mombasa,2026-07-06 05:00,2026-07-08 10:00,2026-07-08 15:51,completed,,58.9,Routine inspection flagged vibration anomaly
+WO-10072,V2014,Valve,Nairobi,2026-05-04 05:00,2026-05-05 13:00,2026-05-05 22:03,completed,,41.1,Escalated from HSE early-warning alert
+WO-10195,P2017,Pump,Kisumu,01/05/2026 10:00,03/05/2026 05:00,,overdue,D. Omondi,,Scheduled preventive maintenance
+WO-10483,V2023,Valve,Kisumu,06-06-2026 10:00,06-07-2026 17:00,,overdue,R. Achieng,,
+WO-10137,P2011,Pump,Nairobi,12/06/2026 07:00,13/06/2026 09:00,13/06/2026 09:57,COMPLETE,,27.0,Escalated from HSE early-warning alert
+WO-10494,P2001,Pump,Mombasa,04-29-2026 04:00,04-30-2026 14:00,,In Progress,A. Wanjiru,,
+WO-10550,P2011,Pump,Nairobi,2026-07-02 15:00,2026-07-03 18:00,,opened,,,Pressure drop reported by depot operator
+WO-10462,V2012,Valve,Nairobi,05-13-2026 07:00,05-13-2026 12:00,,IN-PROGRESS,,,Routine inspection flagged vibration anomaly
+WO-10201,P2016,Pump,Kisumu,2026-05-23 23:00,2026-05-26 15:00,,OPEN,D. Omondi,,
+WO-10312,V2015,Valve,Nairobi,05-03-2026 05:00,05-05-2026 10:00,05-05-2026 12:12,Closed,F. Muthoni,55.2,
+WO-10290,P2019,Pump,Kisumu,04-04-2026 23:00,04-07-2026 09:00,04-06-2026 22:57,Complete,,48.0,Escalated from HSE early-warning alert
+WO-10189,P2009,Pump,Nairobi,06-29-2026 14:00,06-30-2026 07:00,06-30-2026 08:49,COMPLETE,S. Mwangi,18.8,Routine inspection flagged vibration anomaly
+WO-10112,P2011,Pump,Nairobi,03/04/2026 10:00,03/04/2026 19:00,03/04/2026 09:01,COMPLETE,S. Mwangi,0.5,
+WO-10183,V2021,Valve,Kisumu,05-05-2026 05:00,05-07-2026 08:00,,In-Progress,,,Escalated from HSE early-warning alert
+WO-10152,V2014,Valve,Nairobi,05-05-2026 00:00,05-05-2026 10:00,,opened,,,Routine inspection flagged vibration anomaly
+WO-10325,V2006,Valve,mombasa,04-10-2026 02:00,04-11-2026 04:00,04-11-2026 03:15,Complete,J. Otieno,25.3,Routine inspection flagged vibration anomaly
+WO-10044,P2009,Pump,Nairobi,2026-06-27 22:00,2026-06-30 21:00,,IN-PROGRESS,P. Kiptoo,,
+WO-10444,P2008,Pump,Nairobi,04/04/2026 19:00,05/04/2026 20:00,,In-Progress,S. Mwangi,,Routine inspection flagged vibration anomaly
+WO-10006,P2011,Pump,Nairobi,2026-06-10 22:00,2026-06-12 13:00,2026-06-12 18:43,Closed,F. Muthoni,44.7,Escalated from HSE early-warning alert
+WO-10250,P2009,Pump,Nairobi,06/07/2026 07:00,08/07/2026 01:00,08/07/2026 06:18,Completed,P. Kiptoo,47.3,
+WO-10075,V2004,Valve,Mombasa,2026-04-16 10:00,2026-04-18 03:00,2026-04-18 08:58,COMPLETE,B. Njoroge,47.0,
+WO-10512,P2003,Pump,Mombasa,06-08-2026 22:00,06-09-2026 22:00,06-10-2026 04:28,COMPLETE,A. Wanjiru,30.5,
+WO-10391,P2019,Pump,Kisumu,13/05/2026 22:00,15/05/2026 21:00,15/05/2026 18:20,completed,,44.3,Pressure drop reported by depot operator
+WO-10432,V2012,Valve,Nairobi,22/04/2026 16:00,25/04/2026 14:00,,OPEN,F. Muthoni,,
+WO-10068,V2014,Valve,Nairobi,2026-06-12 21:00,2026-06-14 03:00,,Overdue,,,
+WO-10167,V2022,Valve,Kisumu,07-07-2026 12:00,07-07-2026 22:00,07-07-2026 18:12,COMPLETE,,6.2,Routine inspection flagged vibration anomaly
+WO-10554,P2009,Pump,Nairobi,06-17-2026 19:00,06-18-2026 08:00,06-18-2026 19:04,COMPLETE,,24.1,Scheduled preventive maintenance
+WO-10366,P2018,Pump,Kisumu,17/04/2026 05:00,18/04/2026 20:00,19/04/2026 02:13,Complete,R. Achieng,45.2,Routine inspection flagged vibration anomaly
+WO-10345,P2019,Pump,Kisumu,06/06/2026 22:00,07/06/2026 11:00,,OVERDUE,D. Omondi,,Scheduled preventive maintenance
+WO-10584,P2011,Pump,Nairobi,04-08-2026 09:00,04-09-2026 23:00,04-09-2026 23:09,COMPLETE,,38.2,
+WO-10535,V2015,Valve,Nairobi,06-15-2026 19:00,06-18-2026 01:00,,OPEN,,,
+WO-10398,V2007,Valve,Mombasa,05-04-2026 13:00,05-07-2026 06:00,05-06-2026 22:37,Complete,,57.6,Routine inspection flagged vibration anomaly
+WO-10185,V2022,Valve,kisumu,2026-04-12 03:00,2026-04-13 13:00,,in progress,,,Routine inspection flagged vibration anomaly
+WO-10348,V2013,Valve,Nairobi,2026-06-04 17:00,2026-06-06 00:00,,OPEN,P. Kiptoo,,
+WO-10211,P2010,Pump,Nairobi,06/04/2026 04:00,07/04/2026 09:00,07/04/2026 02:48,COMPLETE,S. Mwangi,22.8,Escalated from HSE early-warning alert
+WO-10579,V2023,Valve,kisumu,05-08-2026 02:00,05-10-2026 12:00,05-10-2026 15:51,Completed,R. Achieng,61.9,Scheduled preventive maintenance
+WO-10502,P2018,Pump,Kisumu,21/04/2026 11:00,24/04/2026 09:00,24/04/2026 03:18,COMPLETE,,64.3,
+WO-10537,V2004,Valve,Mombasa,2026-06-12 04:00,2026-06-14 13:00,2026-06-15 02:21,Completed,B. Njoroge,70.4,Escalated from HSE early-warning alert
+WO-10196,V2012,Valve,Nairobi,04-05-2026 08:00,04-07-2026 03:00,04-07-2026 17:14,COMPLETE,F. Muthoni,57.2,Routine inspection flagged vibration anomaly
+WO-10175,V2020,Valve,Kisumu,05/07/2026 02:00,06/07/2026 12:00,,Past Due,,,Pressure drop reported by depot operator

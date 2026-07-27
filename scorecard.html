@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stage 1 Scorecard — Downtime Reduction</title>
+<style>
+  :root {
+    --bg: #f7f6f2; --card: #ffffff; --border: #e1e0d9;
+    --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #898781;
+    --accent: #185fa5; --accent-bg: #e6f1fb;
+    --success: #27500a; --success-bg: #eaf3de;
+    --amber: #633806; --amber-bg: #faeeda;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px; background: var(--bg); color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 4px; font-weight: 600; }
+  h1 { font-size: 24px; font-weight: 600; margin: 0 0 6px; }
+  .subtitle { font-size: 14px; color: var(--text-secondary); margin: 0 0 28px; }
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+  .metric-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 14px; padding: 18px 16px; text-align: left; }
+  .metric-label { font-size: 12.5px; color: var(--text-secondary); margin: 0 0 6px; }
+  .metric-value { font-size: 28px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+  .metric-sub { font-size: 12px; color: var(--text-muted); margin: 4px 0 0; }
+  .metric-value.success { color: var(--success); }
+  .metric-value.accent { color: var(--accent); }
+
+  section { background: var(--card); border: 0.5px solid var(--border); border-radius: 14px; padding: 20px 22px; margin-bottom: 16px; }
+  h2 { font-size: 15px; font-weight: 700; margin: 0 0 14px; }
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .check-row { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 4px 0; }
+  .check-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); flex-shrink: 0; }
+  .check-label { color: var(--text-primary); }
+
+  .insight-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 0.5px solid var(--border); font-size: 13.5px; }
+  .insight-row:first-child { border-top: none; }
+  .insight-name { font-weight: 600; }
+  .insight-detail { color: var(--text-secondary); }
+  .badge { font-size: 11.5px; font-weight: 600; padding: 3px 10px; border-radius: 6px; background: var(--amber-bg); color: var(--amber); }
+
+  .footer-line { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Inuka hackathon &middot; stage 1 &middot; domain b, problem 4</p>
+  <h1>Downtime reduction — pipeline scorecard</h1>
+  <p class="subtitle">Evidence from the ETL pipeline, data quality gate, and scheduler run — Kenya Pipeline Company maintenance data</p>
+
+  <div class="metrics">
+    <div class="metric-card">
+      <p class="metric-label">Quality gate</p>
+      <p class="metric-value success">10/10</p>
+      <p class="metric-sub">checks passing</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Rows cleaned</p>
+      <p class="metric-value">600</p>
+      <p class="metric-sub">from 615 raw, messy rows</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Tickets created</p>
+      <p class="metric-value accent">264/264</p>
+      <p class="metric-sub">100% eventual success</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Avg latency</p>
+      <p class="metric-value accent">182ms</p>
+      <p class="metric-sub">15 auto-recovered retries</p>
+    </div>
+  </div>
+
+  <section>
+    <h2>Data quality gate — 10 automated checks</h2>
+    <div class="check-grid">
+      <div class="check-row"><span class="check-dot"></span><span class="check-label">No null asset IDs</span></div>
+      <div class="check-row"><span class="check-dot"></span><span class="check-label">No null report timestamps</span></div>
+      <div class="check-row"><span class="check-dot"></span><span class="check-label">Work order IDs unique</span></div>
+      <div class="check-row"><span class="check-dot"></span><span class="check-label">Status values in valid set</span></div>
+      <div class="check-row"><span class="check-dot"></span><span class="check-label">Zone values in valid set</span></div>
+      <div class="check-row"><span class="check-dot"></span><span class="check-label">Downtime hours non-negative</span></div>
+      <div class="check-row"><span class="check-dot"></span><span class="check-label">Downtime hours within bounds</span></div>
+      <div class="check-row"><span class="check-dot"></span><span class="check-label">Completion after report time</span></div>
+      <div class="check-row"><span class="check-dot"></span><span class="check-label">Unknown-status rate below 5%</span></div>
+      <div class="check-row"><span class="check-dot"></span><span class="check-label">Technician double-booking rate below 2%</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Operational insights already surfaced from Stage 1 data</h2>
+    <div class="insight-row">
+      <div>
+        <div class="insight-name">Chronic-failure assets</div>
+        <div class="insight-detail">6 of 24 assets (25%) at &ge;1.2&times; fleet-average ticket volume</div>
+      </div>
+      <span class="badge">Priority list for CBM rollout</span>
+    </div>
+    <div class="insight-row">
+      <div>
+        <div class="insight-name">Technician scheduling conflicts</div>
+        <div class="insight-detail">4 genuine double-bookings detected across the dataset</div>
+      </div>
+      <span class="badge">Direct cause of dispatch delay</span>
+    </div>
+  </section>
+
+  <p class="footer-line">Pipeline: extract &rarr; clean &rarr; quality gate &rarr; load &nbsp;|&nbsp; Scheduler: reads clean data &rarr; creates tickets via API &rarr; logs performance</p>
+</div>
+</body>
+</html>

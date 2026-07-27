@@ -1,0 +1,55 @@
+{
+  "chronic_assets_found": 6,
+  "chronic_assets": [
+    {
+      "asset_id": "V2014",
+      "zone": "Nairobi",
+      "asset_type": "Valve",
+      "ticket_count": 35,
+      "fleet_average": 25.0,
+      "multiplier_vs_fleet_average": 1.4
+    },
+    {
+      "asset_id": "V2023",
+      "zone": "Kisumu",
+      "asset_type": "Valve",
+      "ticket_count": 32,
+      "fleet_average": 25.0,
+      "multiplier_vs_fleet_average": 1.28
+    },
+    {
+      "asset_id": "P2018",
+      "zone": "Kisumu",
+      "asset_type": "Pump",
+      "ticket_count": 32,
+      "fleet_average": 25.0,
+      "multiplier_vs_fleet_average": 1.28
+    },
+    {
+      "asset_id": "V2012",
+      "zone": "Nairobi",
+      "asset_type": "Valve",
+      "ticket_count": 32,
+      "fleet_average": 25.0,
+      "multiplier_vs_fleet_average": 1.28
+    },
+    {
+      "asset_id": "V2005",
+      "zone": "Mombasa",
+      "asset_type": "Valve",
+      "ticket_count": 31,
+      "fleet_average": 25.0,
+      "multiplier_vs_fleet_average": 1.24
+    },
+    {
+      "asset_id": "P2017",
+      "zone": "Kisumu",
+      "asset_type": "Pump",
+      "ticket_count": 30,
+      "fleet_average": 25.0,
+      "multiplier_vs_fleet_average": 1.2
+    }
+  ],
+  "total_assets_analyzed": 24,
+  "chronic_asset_rate": 0.25
+}

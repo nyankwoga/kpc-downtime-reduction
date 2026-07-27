@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "no_null_asset_id": true,
+    "no_null_reported_time": true,
+    "work_order_id_unique": true,
+    "status_in_valid_set": true,
+    "zone_in_valid_set": true,
+    "downtime_non_negative": true,
+    "downtime_within_bounds": true,
+    "completed_time_after_reported": true,
+    "unknown_status_rate_below_5pct": true,
+    "technician_double_booking_rate_below_2pct": true
+  },
+  "passed": 10,
+  "total": 10,
+  "pass_rate": 1.0,
+  "gate_status": "PASS",
+  "technician_double_bookings_found": 4
+}
