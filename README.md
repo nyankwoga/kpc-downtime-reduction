@@ -35,22 +35,50 @@ requirements.txt
 
 ## Quick start
 
+### 1. Start the backend
+From the project root:
+
 ```bash
+cd downtime_reduction
 pip install -r requirements.txt
-
-# 1. generate the messy raw data (or swap in a real KPC export with the same columns)
 python generate_data.py
-
-# --- Option A: run the live app (recommended) ---
 uvicorn app:app --reload --port 8000
-# open http://127.0.0.1:8000 -- click "Run pipeline now", then "Run scheduler now"
+```
 
-# --- Option B: run the pieces separately (for development/testing) ---
-python pipeline.py                                    # cleans data, runs quality gate, loads DB
-pytest tests/ -v                                       # 11 unit tests
-uvicorn mock_ticketing_api:app --port 8000 &            # standalone ticketing API
-python scheduler.py                                     # scheduler run against it
-python build_interactive_dashboard.py                   # rebuilds interactive_dashboard.html
+Open http://127.0.0.1:8000 to access the FastAPI app and its API endpoints.
+
+### 2. Start the frontend
+In a separate terminal:
+
+```bash
+cd downtime_reduction/frontend-interface
+pnpm install
+cp .env.example .env.local  # if an example file exists, otherwise create .env.local manually
+```
+
+Create or update .env.local with:
+
+```env
+NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
+```
+
+Then start the UI:
+
+```bash
+pnpm dev
+```
+
+Open http://localhost:3000 to view the Next.js dashboard.
+
+### 3. Optional: run the pipeline and scheduler manually
+If you want to populate data outside of the UI:
+
+```bash
+python pipeline.py
+pytest tests/ -v
+uvicorn mock_ticketing_api:app --port 8000
+python scheduler.py
+python build_interactive_dashboard.py
 ```
 
 ## What each deliverable maps to (Stage 1 rubric)
