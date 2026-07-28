@@ -1,0 +1,65 @@
+name: CI
+
+# Runs on every push and PR to main: unit tests, then the real ETL pipeline
+# against the checked-in sample data, then a hard fail if the data-quality
+# gate does not pass. This is the "basic CI + data-quality gates" deliverable
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-and-quality-gate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: pytest tests/ -v
+
+      - name: Run the ETL pipeline
+        run: python pipeline.py
+
+      - name: Enforce the data-quality gate
+        run: |
+          python - <<'PY'
+          import json
+          import sys
+
+          with open("quality_report.json") as f:
+              report = json.load(f)
+
+          print(f"Quality gate: {report['passed']}/{report['total']} checks passed "
+                f"({report['gate_status']})")
+
+          for name, ok in report["checks"].items():
+              print(f"  {'PASS' if ok else 'FAIL'}  {name}")
+
+          if report["gate_status"] != "PASS":
+              print("\nData-quality gate FAILED — blocking the build.")
+              sys.exit(1)
+          PY
+
+      - name: Upload pipeline artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-run-artifacts
+          path: |
+            pipeline.log
+            quality_report.json
+            insights.json
+          retention-days: 14
