@@ -6,143 +6,238 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from 'react'
-import { TOTAL_TICKETS } from './fleet'
+import {
+  api,
+  ApiError,
+  type ChronicAsset,
+  type EquipmentRow,
+  type FleetOverview,
+  type Insights,
+  type NotificationRow,
+  type QualityReport,
+  type TechnicianRow,
+  type Ticket,
+} from './api'
 
 /**
- * Client-side "engine" that mirrors app.py's live behaviour:
- *   - Run pipeline  -> extract -> transform -> quality gate -> load
- *   - Run scheduler -> streams auto-created tickets with latency + retries
- * The buttons drive real animated state that every view reads from, so the
- * dashboard behaves like the deployed FastAPI app, not a static snapshot.
+ * lib/engine.tsx
+ * ---------------
+ * Client-side state that drives the dashboard from the REAL backend
+ * (app.py). Clicking "Run pipeline" / "Run scheduler" makes an actual
+ * POST request; every number on screen traces back to that response,
+ * not a bundled JSON snapshot.
  */
 
-export const PIPELINE_STEPS = [
-  { key: 'extract', label: 'Extract raw work orders', detail: 'Reading CMMS export · 615 rows' },
-  { key: 'transform', label: 'Clean & normalize', detail: 'Dates, statuses, dedupe · 600 rows' },
-  { key: 'gate', label: 'Data-quality gate', detail: '10 expectations · CI-enforced' },
-  { key: 'load', label: 'Load to warehouse', detail: 'Idempotent SQLite · 24 assets' },
-] as const
+export type Phase = 'idle' | 'running' | 'done' | 'error'
 
-type Phase = 'idle' | 'running' | 'done'
+export type { ChronicAsset, EquipmentRow, FleetOverview, Insights, NotificationRow, QualityReport, TechnicianRow, Ticket }
 
 type EngineValue = {
+  // Pipeline
   pipelinePhase: Phase
-  pipelineStep: number // active step index while running; 4 when done
-  pipelineDone: boolean
+  pipelineError: string | null
+  qualityReport: QualityReport | null
+  insights: Insights | null
+  fleetOverview: FleetOverview | null
+  rowsCleaned: number | null
   runPipeline: () => void
 
+  // Scheduler
   schedulerPhase: Phase
-  schedulerCount: number
-  schedulerDone: boolean
+  schedulerError: string | null
+  tickets: Ticket[]
+  totalCandidates: number
+  succeeded: number
+  failed: number
+  avgLatencyMs: number
   runScheduler: () => void
 
-  reset: () => void
+  // Fleet views (equipment / technicians / notifications)
+  equipment: EquipmentRow[]
+  technicians: TechnicianRow[]
+  notifications: NotificationRow[]
+  unassignedWorkOrders: number
+
   lastRun: number | null
   busy: boolean
+  hydrating: boolean
 }
 
 const EngineContext = createContext<EngineValue | null>(null)
 
 export function DashboardProvider({ children }: { children: React.ReactNode }) {
-  // Start in the "completed run" state so the console is populated on load.
-  const [pipelinePhase, setPipelinePhase] = useState<Phase>('done')
-  const [pipelineStep, setPipelineStep] = useState(4)
-  const [schedulerPhase, setSchedulerPhase] = useState<Phase>('done')
-  const [schedulerCount, setSchedulerCount] = useState(TOTAL_TICKETS)
-  const [lastRun, setLastRun] = useState<number | null>(() => Date.now())
+  const [pipelinePhase, setPipelinePhase] = useState<Phase>('idle')
+  const [pipelineError, setPipelineError] = useState<string | null>(null)
+  const [qualityReport, setQualityReport] = useState<QualityReport | null>(null)
+  const [insights, setInsights] = useState<Insights | null>(null)
+  const [fleetOverview, setFleetOverview] = useState<FleetOverview | null>(null)
+  const [rowsCleaned, setRowsCleaned] = useState<number | null>(null)
 
-  const timers = useRef<ReturnType<typeof setTimeout>[]>([])
-  const interval = useRef<ReturnType<typeof setInterval> | null>(null)
+  const [schedulerPhase, setSchedulerPhase] = useState<Phase>('idle')
+  const [schedulerError, setSchedulerError] = useState<string | null>(null)
+  const [tickets, setTickets] = useState<Ticket[]>([])
+  const [totalCandidates, setTotalCandidates] = useState(0)
+  const [succeeded, setSucceeded] = useState(0)
+  const [failed, setFailed] = useState(0)
+  const [avgLatencyMs, setAvgLatencyMs] = useState(0)
 
-  const clearAll = useCallback(() => {
-    timers.current.forEach(clearTimeout)
-    timers.current = []
-    if (interval.current) {
-      clearInterval(interval.current)
-      interval.current = null
-    }
+  const [equipment, setEquipment] = useState<EquipmentRow[]>([])
+  const [technicians, setTechnicians] = useState<TechnicianRow[]>([])
+  const [notifications, setNotifications] = useState<NotificationRow[]>([])
+  const [unassignedWorkOrders, setUnassignedWorkOrders] = useState(0)
+
+  const [lastRun, setLastRun] = useState<number | null>(null)
+  const [hydrating, setHydrating] = useState(true)
+
+  const refreshFleetData = useCallback(() => {
+    api
+      .equipment()
+      .then((r) => setEquipment(r.equipment))
+      .catch(() => {})
+    api
+      .technicians()
+      .then((r) => {
+        setTechnicians(r.technicians)
+        setUnassignedWorkOrders(r.unassigned_work_orders)
+      })
+      .catch(() => {})
+    api
+      .notifications()
+      .then((r) => setNotifications(r.notifications))
+      .catch(() => {})
   }, [])
 
-  useEffect(() => () => clearAll(), [clearAll])
+  // On mount, pull whatever state the backend already has — e.g. someone
+  // already clicked "Run pipeline" from another tab, or the server never
+  // restarted. This avoids showing a fake "idle" state for a backend that's
+  // actually already primed.
+  useEffect(() => {
+    let cancelled = false
+
+    api
+      .pipelineStatus()
+      .then((status) => {
+        if (cancelled || !status.quality_report) return
+        setQualityReport(status.quality_report)
+        setInsights(status.insights)
+        setFleetOverview(status.fleet_overview)
+        setPipelinePhase('done')
+        refreshFleetData()
+      })
+      .catch(() => {})
+
+    api
+      .schedulerLatest()
+      .then((r) => {
+        if (cancelled || !r.tickets?.length) return
+        setTickets(r.tickets)
+        setTotalCandidates(r.tickets.length)
+        setSucceeded(r.tickets.filter((t) => t.success).length)
+        setFailed(r.tickets.filter((t) => !t.success).length)
+        const avg = r.tickets.reduce((s, t) => s + t.latency_ms, 0) / r.tickets.length
+        setAvgLatencyMs(Math.round(avg * 10) / 10)
+        setSchedulerPhase('done')
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (!cancelled) setHydrating(false)
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [refreshFleetData])
 
   const runPipeline = useCallback(() => {
-    clearAll()
     setPipelinePhase('running')
-    setPipelineStep(0)
-    PIPELINE_STEPS.forEach((_, i) => {
-      timers.current.push(
-        setTimeout(() => {
-          setPipelineStep(i)
-          if (i === PIPELINE_STEPS.length - 1) {
-            timers.current.push(
-              setTimeout(() => {
-                setPipelineStep(4)
-                setPipelinePhase('done')
-                setLastRun(Date.now())
-              }, 650),
-            )
-          }
-        }, i * 700),
-      )
-    })
-  }, [clearAll])
+    setPipelineError(null)
+    api
+      .runPipeline()
+      .then((res) => {
+        setQualityReport(res.quality_report)
+        setInsights(res.insights)
+        setFleetOverview(res.fleet_overview)
+        setRowsCleaned(res.rows_cleaned)
+        setPipelinePhase('done')
+        setLastRun(Date.now())
+        refreshFleetData()
+      })
+      .catch((err: unknown) => {
+        setPipelineError(err instanceof ApiError ? err.message : 'Pipeline run failed')
+        setPipelinePhase('error')
+      })
+  }, [refreshFleetData])
 
   const runScheduler = useCallback(() => {
-    clearAll()
     setSchedulerPhase('running')
-    setSchedulerCount(0)
-    const durationMs = 3600
-    const tickMs = 40
-    const step = Math.max(1, Math.ceil(TOTAL_TICKETS / (durationMs / tickMs)))
-    interval.current = setInterval(() => {
-      setSchedulerCount((c) => {
-        const next = Math.min(c + step, TOTAL_TICKETS)
-        if (next >= TOTAL_TICKETS) {
-          if (interval.current) clearInterval(interval.current)
-          interval.current = null
-          setSchedulerPhase('done')
-          setLastRun(Date.now())
-        }
-        return next
+    setSchedulerError(null)
+    api
+      .runScheduler()
+      .then((res) => {
+        setTickets(res.tickets)
+        setTotalCandidates(res.total_candidates)
+        setSucceeded(res.succeeded)
+        setFailed(res.failed)
+        setAvgLatencyMs(res.avg_latency_ms)
+        setSchedulerPhase('done')
+        setLastRun(Date.now())
+        refreshFleetData()
       })
-    }, tickMs)
-  }, [clearAll])
-
-  const reset = useCallback(() => {
-    clearAll()
-    setPipelinePhase('idle')
-    setPipelineStep(-1)
-    setSchedulerPhase('idle')
-    setSchedulerCount(0)
-    setLastRun(null)
-  }, [clearAll])
+      .catch((err: unknown) => {
+        setSchedulerError(err instanceof ApiError ? err.message : 'Scheduler run failed')
+        setSchedulerPhase('error')
+      })
+  }, [refreshFleetData])
 
   const value = useMemo<EngineValue>(
     () => ({
       pipelinePhase,
-      pipelineStep,
-      pipelineDone: pipelinePhase === 'done',
+      pipelineError,
+      qualityReport,
+      insights,
+      fleetOverview,
+      rowsCleaned,
       runPipeline,
       schedulerPhase,
-      schedulerCount,
-      schedulerDone: schedulerPhase === 'done',
+      schedulerError,
+      tickets,
+      totalCandidates,
+      succeeded,
+      failed,
+      avgLatencyMs,
       runScheduler,
-      reset,
+      equipment,
+      technicians,
+      notifications,
+      unassignedWorkOrders,
       lastRun,
       busy: pipelinePhase === 'running' || schedulerPhase === 'running',
+      hydrating,
     }),
     [
       pipelinePhase,
-      pipelineStep,
-      schedulerPhase,
-      schedulerCount,
+      pipelineError,
+      qualityReport,
+      insights,
+      fleetOverview,
+      rowsCleaned,
       runPipeline,
+      schedulerPhase,
+      schedulerError,
+      tickets,
+      totalCandidates,
+      succeeded,
+      failed,
+      avgLatencyMs,
       runScheduler,
-      reset,
+      equipment,
+      technicians,
+      notifications,
+      unassignedWorkOrders,
       lastRun,
+      hydrating,
     ],
   )
 

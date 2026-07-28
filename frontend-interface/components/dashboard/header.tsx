@@ -1,16 +1,26 @@
+'use client'
+
 import { Activity } from 'lucide-react'
-import { data } from '@/lib/data'
+import { useDashboard } from '@/lib/engine'
 import { ThemeToggle } from './theme-toggle'
 
 export function DashboardHeader() {
-  const exportedAt = new Date(data.exported_at)
-  const stamp = exportedAt.toLocaleString('en-GB', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  })
+  const { qualityReport, lastRun, hydrating } = useDashboard()
+
+  const stamp = lastRun
+    ? new Date(lastRun).toLocaleString('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+    : hydrating
+      ? 'Checking backend…'
+      : 'Not run yet'
+
+  const gateLabel = qualityReport ? `Gate ${qualityReport.gate_status}` : 'Gate idle'
+  const gateOk = qualityReport?.gate_status === 'PASS'
 
   return (
     <header className="sticky top-0 z-20 border-b border-border/80 bg-background/80 backdrop-blur-md">
@@ -34,9 +44,22 @@ export function DashboardHeader() {
             <p className="text-[11px] uppercase tracking-wide text-muted-foreground">Last run</p>
             <p className="font-mono text-xs text-foreground">{stamp}</p>
           </div>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-success/30 bg-success/10 px-3 py-1.5 text-xs font-medium text-success">
-            <span className="size-1.5 animate-pulse rounded-full bg-success" aria-hidden="true" />
-            Gate {data.quality_report.gate_status}
+          <span
+            className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium ${
+              qualityReport
+                ? gateOk
+                  ? 'border-success/30 bg-success/10 text-success'
+                  : 'border-destructive/30 bg-destructive/10 text-destructive'
+                : 'border-muted-foreground/20 bg-muted text-muted-foreground'
+            }`}
+          >
+            <span
+              className={`size-1.5 rounded-full ${qualityReport ? 'animate-pulse' : ''} ${
+                qualityReport ? (gateOk ? 'bg-success' : 'bg-destructive') : 'bg-muted-foreground'
+              }`}
+              aria-hidden="true"
+            />
+            {gateLabel}
           </span>
           <ThemeToggle />
         </div>

@@ -1,10 +1,29 @@
+'use client'
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { CHECK_LABELS, data } from '@/lib/data'
+import { CHECK_LABELS } from '@/lib/data'
+import { useDashboard } from '@/lib/engine'
 import { Check, X } from 'lucide-react'
 
 export function QualityGate() {
-  const { checks, passed, total } = data.quality_report
+  const { qualityReport } = useDashboard()
+
+  if (!qualityReport) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Data quality gate</CardTitle>
+          <p className="mt-1 text-sm text-muted-foreground">
+            No pipeline run yet — click &ldquo;Run pipeline now&rdquo; above to fetch live results
+            from the backend.
+          </p>
+        </CardHeader>
+      </Card>
+    )
+  }
+
+  const { checks, passed, total } = qualityReport
   const entries = Object.entries(checks)
 
   return (
@@ -18,9 +37,13 @@ export function QualityGate() {
         </div>
         <Badge
           variant="outline"
-          className="shrink-0 border-success/30 bg-success/10 font-mono text-success"
+          className={`shrink-0 font-mono ${
+            passed === total
+              ? 'border-success/30 bg-success/10 text-success'
+              : 'border-destructive/30 bg-destructive/10 text-destructive'
+          }`}
         >
-          {passed}/{total} PASS
+          {passed}/{total} {passed === total ? 'PASS' : 'FAIL'}
         </Badge>
       </CardHeader>
       <CardContent>

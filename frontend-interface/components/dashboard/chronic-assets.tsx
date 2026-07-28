@@ -3,15 +3,45 @@
 import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { data } from '@/lib/data'
+import { useDashboard } from '@/lib/engine'
 import { Droplets, Gauge as ValveIcon } from 'lucide-react'
 
 export function ChronicAssets() {
-  const { chronic_assets, total_assets_analyzed } = data.insights
-  const [selected, setSelected] = useState(chronic_assets[0]?.asset_id ?? '')
+  const { insights } = useDashboard()
+  const chronic_assets = insights?.chronic_assets ?? []
+  const [selected, setSelected] = useState('')
+
+  if (!insights) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Chronic-failure assets</CardTitle>
+          <p className="mt-1 text-sm text-muted-foreground">
+            No pipeline run yet — click &ldquo;Run pipeline now&rdquo; above to fetch live results
+            from the backend.
+          </p>
+        </CardHeader>
+      </Card>
+    )
+  }
+
+  const { total_assets_analyzed } = insights
   const active = chronic_assets.find((a) => a.asset_id === selected) ?? chronic_assets[0]
-  const maxCount = Math.max(...chronic_assets.map((a) => a.ticket_count))
+  const maxCount = Math.max(1, ...chronic_assets.map((a) => a.ticket_count))
   const fleetAvg = chronic_assets[0]?.fleet_average ?? 0
+
+  if (chronic_assets.length === 0) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Chronic-failure assets</CardTitle>
+          <p className="mt-1 text-sm text-muted-foreground">
+            No assets are meaningfully above the fleet average right now.
+          </p>
+        </CardHeader>
+      </Card>
+    )
+  }
 
   return (
     <Card>

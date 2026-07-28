@@ -1,5 +1,7 @@
+'use client'
+
 import { Card } from '@/components/ui/card'
-import { data } from '@/lib/data'
+import { useDashboard } from '@/lib/engine'
 import {
   ShieldCheck,
   AlertTriangle,
@@ -33,48 +35,55 @@ const iconTone: Record<Kpi['tone'], string> = {
 }
 
 export function KpiCards() {
-  const { quality_report: qr, insights, scheduler_run: run } = data
-  const successRate = Math.round((run.succeeded / run.total_candidates) * 100)
+  const { qualityReport: qr, insights, tickets, totalCandidates, succeeded, avgLatencyMs } =
+    useDashboard()
+
+  const retried = tickets.filter((t) => t.attempts > 1).length
+  const successRate = totalCandidates ? Math.round((succeeded / totalCandidates) * 100) : 0
 
   const kpis: Kpi[] = [
     {
       label: 'Data quality gate',
-      value: `${qr.passed}/${qr.total}`,
-      sub: `${qr.gate_status} · CI-enforced on every commit`,
+      value: qr ? `${qr.passed}/${qr.total}` : '–',
+      sub: qr ? `${qr.gate_status} · CI-enforced on every commit` : 'Run pipeline to check',
       icon: ShieldCheck,
       tone: 'success',
     },
     {
       label: 'Tickets auto-created',
-      value: `${run.succeeded}`,
-      sub: `${successRate}% success across ${run.total_candidates} candidates`,
+      value: totalCandidates ? `${succeeded}` : '–',
+      sub: totalCandidates
+        ? `${successRate}% success across ${totalCandidates} candidates`
+        : 'Run scheduler to generate',
       icon: TicketCheck,
       tone: 'primary',
     },
     {
       label: 'Avg API latency',
-      value: `${run.avg_latency_ms}ms`,
-      sub: `${run.retried} calls needed a retry`,
+      value: totalCandidates ? `${avgLatencyMs}ms` : '–',
+      sub: totalCandidates ? `${retried} calls needed a retry` : 'No scheduler run yet',
       icon: Gauge,
       tone: 'primary',
     },
     {
       label: 'Chronic-failure assets',
-      value: `${insights.chronic_assets_found}`,
-      sub: `of ${insights.total_assets_analyzed} assets · ${Math.round(insights.chronic_asset_rate * 100)}% of fleet`,
+      value: insights ? `${insights.chronic_assets_found}` : '–',
+      sub: insights
+        ? `of ${insights.total_assets_analyzed} assets · ${Math.round(insights.chronic_asset_rate * 100)}% of fleet`
+        : 'Run pipeline to analyze',
       icon: AlertTriangle,
       tone: 'warning',
     },
     {
       label: 'Retries handled',
-      value: `${run.retried}`,
+      value: totalCandidates ? `${retried}` : '–',
       sub: 'Transient failures recovered automatically',
       icon: RefreshCw,
       tone: 'muted',
     },
     {
       label: 'Double-bookings caught',
-      value: `${qr.technician_double_bookings_found}`,
+      value: qr ? `${qr.technician_double_bookings_found}` : '–',
       sub: 'Overlapping technician job windows',
       icon: Users,
       tone: 'warning',
