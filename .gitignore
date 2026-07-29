@@ -11,3 +11,7 @@ api.log
 itg
 node_modules/
 .next/
+venv
+presentation.md
+.vscode
+.next/
