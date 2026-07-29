@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import {
   Area,
   AreaChart,
@@ -15,6 +15,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Input } from '@/components/ui/input'
 import {
   ChartContainer,
   ChartTooltip,
@@ -23,7 +24,7 @@ import {
 import type { ChartConfig } from '@/components/ui/chart'
 import { PRIORITY_COLORS, ZONE_COLORS } from '@/lib/data'
 import { useDashboard } from '@/lib/engine'
-import { Loader2, Play } from 'lucide-react'
+import { Loader2, Play, Search, Filter } from 'lucide-react'
 
 const latencyConfig = {
   latency: { label: 'Latency (ms)', color: 'var(--chart-1)' },
@@ -46,6 +47,32 @@ export function SchedulerPerformance() {
 
   const running = schedulerPhase === 'running'
   const canRun = pipelinePhase === 'done'
+
+  // Filter state for Tickets Explorer
+  const [search, setSearch] = useState('')
+  const [priorityFilter, setPriorityFilter] = useState('all')
+  const [zoneFilter, setZoneFilter] = useState('all')
+  const [attemptFilter, setAttemptFilter] = useState('all')
+
+  const filteredTickets = useMemo(() => {
+    return tickets.filter((t) => {
+      const q = search.trim().toLowerCase()
+      const matchSearch =
+        !q ||
+        (t.ticket_id ?? '').toLowerCase().includes(q) ||
+        t.work_order_id.toLowerCase().includes(q) ||
+        t.asset_id.toLowerCase().includes(q) ||
+        (t.error ?? '').toLowerCase().includes(q)
+      const matchPriority = priorityFilter === 'all' || t.priority.toLowerCase() === priorityFilter.toLowerCase()
+      const matchZone = zoneFilter === 'all' || t.zone.toLowerCase() === zoneFilter.toLowerCase()
+      const matchAttempt =
+        attemptFilter === 'all' ||
+        (attemptFilter === 'retry' && t.attempts > 1) ||
+        (attemptFilter === 'single' && t.attempts === 1)
+
+      return matchSearch && matchPriority && matchZone && matchAttempt
+    })
+  }, [tickets, search, priorityFilter, zoneFilter, attemptFilter])
 
   const chartData = useMemo(
     () =>
@@ -222,9 +249,135 @@ export function SchedulerPerformance() {
         />
       </div>
 
+      {/* Full Dispatched CMMS Tickets Explorer Table */}
+      <Card>
+        <CardHeader className="space-y-3 pb-4">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <CardTitle className="text-base">Dispatched CMMS Tickets Explorer</CardTitle>
+              <p className="mt-1 text-sm text-muted-foreground text-pretty">
+                Official maintenance tickets auto-created and posted to the CMMS API during the latest scheduler run.
+              </p>
+            </div>
+            <Badge variant="outline" className="w-fit font-mono text-xs">
+              {filteredTickets.length} of {tickets.length} Matches
+            </Badge>
+          </div>
+
+          {/* Filter Toolbar */}
+          <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4 pt-1">
+            <div className="relative">
+              <Search className="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search Ticket, WO#, Asset..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="pl-9 h-9 text-xs"
+              />
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Filter className="size-3.5 text-muted-foreground shrink-0" />
+              <select
+                value={priorityFilter}
+                onChange={(e) => setPriorityFilter(e.target.value)}
+                className="h-9 w-full rounded-md border bg-background px-3 text-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              >
+                <option value="all">All Priorities</option>
+                <option value="high">High Priority</option>
+                <option value="medium">Medium Priority</option>
+                <option value="low">Low Priority</option>
+              </select>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <select
+                value={zoneFilter}
+                onChange={(e) => setZoneFilter(e.target.value)}
+                className="h-9 w-full rounded-md border bg-background px-3 text-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              >
+                <option value="all">All Zones</option>
+                <option value="mombasa">Mombasa</option>
+                <option value="nairobi">Nairobi</option>
+                <option value="kisumu">Kisumu</option>
+              </select>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <select
+                value={attemptFilter}
+                onChange={(e) => setAttemptFilter(e.target.value)}
+                className="h-9 w-full rounded-md border bg-background px-3 text-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              >
+                <option value="all">All Attempts</option>
+                <option value="single">First Attempt Success</option>
+                <option value="retry">Required Retry (&gt;1 Attempt)</option>
+              </select>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          {tickets.length === 0 ? (
+            <p className="text-sm text-muted-foreground py-4 text-center">
+              No tickets dispatched yet — click &ldquo;Run scheduler now&rdquo; above to execute candidate selection and API post.
+            </p>
+          ) : filteredTickets.length === 0 ? (
+            <p className="text-sm text-muted-foreground py-4 text-center">
+              No tickets match the selected filters.
+            </p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b text-left text-xs text-muted-foreground">
+                    <th className="pb-2 pr-4 font-medium">Ticket ID</th>
+                    <th className="pb-2 pr-4 font-medium">Work Order</th>
+                    <th className="pb-2 pr-4 font-medium">Asset ID</th>
+                    <th className="pb-2 pr-4 font-medium">Zone</th>
+                    <th className="pb-2 pr-4 font-medium">Priority</th>
+                    <th className="pb-2 pr-4 font-medium">API Response</th>
+                    <th className="pb-2 pr-4 text-right font-medium">Attempts</th>
+                    <th className="pb-2 text-right font-medium">Latency</th>
+                  </tr>
+                </thead>
+                <tbody className="font-mono text-xs">
+                  {filteredTickets.map((t) => (
+                    <tr key={t.ticket_id ?? t.work_order_id} className="border-b last:border-0 hover:bg-muted/50">
+                      <td className="py-2.5 pr-4 font-semibold text-primary">{t.ticket_id ?? 'PENDING'}</td>
+                      <td className="py-2.5 pr-4 text-muted-foreground">{t.work_order_id}</td>
+                      <td className="py-2.5 pr-4 font-bold">{t.asset_id}</td>
+                      <td className="py-2.5 pr-4 font-sans">{t.zone}</td>
+                      <td className="py-2.5 pr-4">
+                        <PriorityBadge priority={t.priority} />
+                      </td>
+                      <td className="py-2.5 pr-4">
+                        {t.success ? (
+                          <Badge variant="outline" className="bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border-emerald-500/30 text-[10px]">
+                            200 OK
+                          </Badge>
+                        ) : (
+                          <Badge variant="destructive" className="text-[10px]">
+                            {t.error ?? 'Failed'}
+                          </Badge>
+                        )}
+                      </td>
+                      <td className={`py-2.5 pr-4 text-right ${t.attempts > 1 ? 'text-amber-500 font-bold' : ''}`}>
+                        {t.attempts} {t.attempts > 1 ? '(Retry)' : ''}
+                      </td>
+                      <td className="py-2.5 text-right font-mono">{t.latency_ms}ms</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Retry log</CardTitle>
+          <CardTitle className="text-base">Transient Retry Telemetry Log</CardTitle>
           <p className="mt-1 text-sm text-muted-foreground text-pretty">
             Calls the monitoring layer caught and recovered — the mock CMMS injects a ~5% transient
             failure rate, and every one still resolved via retry.
@@ -232,7 +385,7 @@ export function SchedulerPerformance() {
         </CardHeader>
         <CardContent>
           {retryTickets.length === 0 ? (
-            <p className="text-sm text-muted-foreground">No retries logged yet.</p>
+            <p className="text-sm text-muted-foreground">No retries logged in this run.</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -255,7 +408,7 @@ export function SchedulerPerformance() {
                       <td className="py-2 pr-4">
                         <PriorityBadge priority={t.priority} />
                       </td>
-                      <td className="py-2 pr-4 text-right text-warning">{t.attempts}</td>
+                      <td className="py-2 pr-4 text-right text-amber-500 font-bold">{t.attempts}</td>
                       <td className="py-2 text-right">{t.latency_ms}ms</td>
                     </tr>
                   ))}

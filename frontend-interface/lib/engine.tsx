@@ -11,6 +11,7 @@ import {
 import {
   api,
   ApiError,
+  type AnalyticsData,
   type ChronicAsset,
   type EquipmentRow,
   type FleetOverview,
@@ -32,7 +33,7 @@ import {
 
 export type Phase = 'idle' | 'running' | 'done' | 'error'
 
-export type { ChronicAsset, EquipmentRow, FleetOverview, Insights, NotificationRow, QualityReport, TechnicianRow, Ticket }
+export type { AnalyticsData, ChronicAsset, EquipmentRow, FleetOverview, Insights, NotificationRow, QualityReport, TechnicianRow, Ticket }
 
 type EngineValue = {
   // Pipeline
@@ -41,6 +42,7 @@ type EngineValue = {
   qualityReport: QualityReport | null
   insights: Insights | null
   fleetOverview: FleetOverview | null
+  analytics: AnalyticsData | null
   rowsCleaned: number | null
   runPipeline: () => void
 
@@ -73,6 +75,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
   const [qualityReport, setQualityReport] = useState<QualityReport | null>(null)
   const [insights, setInsights] = useState<Insights | null>(null)
   const [fleetOverview, setFleetOverview] = useState<FleetOverview | null>(null)
+  const [analytics, setAnalytics] = useState<AnalyticsData | null>(null)
   const [rowsCleaned, setRowsCleaned] = useState<number | null>(null)
 
   const [schedulerPhase, setSchedulerPhase] = useState<Phase>('idle')
@@ -107,12 +110,13 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
       .notifications()
       .then((r) => setNotifications(r.notifications))
       .catch(() => {})
+    api
+      .analytics()
+      .then((r) => setAnalytics(r))
+      .catch(() => {})
   }, [])
 
-  // On mount, pull whatever state the backend already has — e.g. someone
-  // already clicked "Run pipeline" from another tab, or the server never
-  // restarted. This avoids showing a fake "idle" state for a backend that's
-  // actually already primed.
+  // On mount, pull whatever state the backend already has
   useEffect(() => {
     let cancelled = false
 
@@ -123,6 +127,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
         setQualityReport(status.quality_report)
         setInsights(status.insights)
         setFleetOverview(status.fleet_overview)
+        if (status.analytics) setAnalytics(status.analytics)
         setPipelinePhase('done')
         refreshFleetData()
       })
@@ -159,6 +164,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
         setQualityReport(res.quality_report)
         setInsights(res.insights)
         setFleetOverview(res.fleet_overview)
+        if (res.analytics) setAnalytics(res.analytics)
         setRowsCleaned(res.rows_cleaned)
         setPipelinePhase('done')
         setLastRun(Date.now())
@@ -198,6 +204,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
       qualityReport,
       insights,
       fleetOverview,
+      analytics,
       rowsCleaned,
       runPipeline,
       schedulerPhase,
@@ -222,6 +229,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
       qualityReport,
       insights,
       fleetOverview,
+      analytics,
       rowsCleaned,
       runPipeline,
       schedulerPhase,

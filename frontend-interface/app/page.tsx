@@ -8,14 +8,19 @@ export default function Page() {
     <div className="min-h-dvh">
       <DashboardHeader />
       <main className="mx-auto max-w-7xl space-y-4 px-4 py-6 sm:px-6 sm:py-8">
-        <section className="space-y-1">
-          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">
-            Inuka Hackathon &middot; Stage 1 &middot; Data Engineering
-          </p>
-          <h2 className="text-balance text-xl font-semibold tracking-tight sm:text-2xl">
-            From messy work orders to auto-created maintenance tickets — and proof the automation is
-            reliable.
+        <section className="space-y-2 rounded-xl border bg-card p-4 sm:p-6">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+              Inuka Hackathon &middot; Domain B: Problem 4 &middot; Downtime Reduction
+            </span>
+            <span className="text-xs font-mono text-muted-foreground">Kenya Pipeline Company (KPC)</span>
+          </div>
+          <h2 className="text-balance text-xl font-bold tracking-tight sm:text-2xl">
+            Automating KPC Maintenance Dispatch &amp; Eliminating Downtime Delays
           </h2>
+          <p className="text-xs sm:text-sm text-muted-foreground max-w-4xl">
+            Ingesting messy field work orders, enforcing a 9-point CI quality gate, and auto-dispatching high-priority tickets via a monitored CMMS API scheduler in <strong>&lt;0.2 seconds</strong>.
+          </p>
         </section>
 
         <KpiCards />
