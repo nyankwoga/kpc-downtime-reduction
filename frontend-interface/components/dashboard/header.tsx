@@ -1,8 +1,9 @@
 'use client'
 
-import { Activity } from 'lucide-react'
+import { Activity, Download } from 'lucide-react'
 import { useDashboard } from '@/lib/engine'
 import { ThemeToggle } from './theme-toggle'
+import { Button } from '@/components/ui/button'
 
 export function DashboardHeader() {
   const { qualityReport, lastRun, hydrating } = useDashboard()
@@ -21,6 +22,11 @@ export function DashboardHeader() {
 
   const gateLabel = qualityReport ? `Gate ${qualityReport.gate_status}` : 'Gate idle'
   const gateOk = qualityReport?.gate_status === 'PASS'
+
+  const downloadPdf = () => {
+    const baseUrl = (process.env.NEXT_PUBLIC_API_URL ?? 'http://127.0.0.1:8000').replace(/\/$/, '')
+    window.open(`${baseUrl}/api/report/pdf`, '_blank')
+  }
 
   return (
     <header className="sticky top-0 z-20 border-b border-border/80 bg-background/80 backdrop-blur-md">
@@ -61,6 +67,10 @@ export function DashboardHeader() {
             />
             {gateLabel}
           </span>
+          <Button variant="outline" size="sm" onClick={downloadPdf} className="gap-1.5 text-xs">
+            <Download className="size-3.5" />
+            <span className="hidden sm:inline">Download Report (PDF)</span>
+          </Button>
           <ThemeToggle />
         </div>
       </div>

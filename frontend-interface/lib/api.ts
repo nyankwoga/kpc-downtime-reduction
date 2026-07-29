@@ -84,10 +84,30 @@ export type FleetOverview = {
   unassigned_technician_count: number
 }
 
+export type AnalyticsData = {
+  zone_downtime: Record<string, { Valve: number; Pump: number; total: number }>
+  cleaning_summary: {
+    dates_corrected: number
+    technicians_imputed: number
+    duplicates_dropped: number
+    downtime_flagged: number
+  }
+  roi_metrics: {
+    total_downtime_hours: number
+    estimated_hours_saved: number
+    manual_dispatch_delay_hrs: number
+    automated_dispatch_delay_sec: number
+    speedup_factor: string
+    overdue_tickets_targeted: number
+  }
+  status_distribution: Record<string, number>
+}
+
 export type PipelineRunResult = {
   quality_report: QualityReport
   insights: Insights
   fleet_overview: FleetOverview
+  analytics?: AnalyticsData
   rows_cleaned: number
 }
 
@@ -95,6 +115,7 @@ export type PipelineStatus = {
   quality_report: QualityReport | null
   insights: Insights | null
   fleet_overview: FleetOverview | null
+  analytics?: AnalyticsData | null
 }
 
 export type Ticket = {
@@ -154,11 +175,16 @@ export type NotificationsResponse = { total: number; notifications: Notification
 export type MaintenanceRow = {
   work_order_id: string
   asset_id: string
+  asset_type?: string
   zone: string
+  reported_time?: string | null
+  scheduled_time?: string | null
+  completed_time?: string | null
   status: string
   technician: string
   downtime_hours: number | null
-  sla_hours: number | null
+  sla_hours?: number | null
+  notes?: string | null
 }
 
 export type MaintenanceResponse = {
@@ -183,9 +209,18 @@ export const api = {
   equipment: () => request<EquipmentResponse>('/api/equipment'),
   technicians: () => request<TechniciansResponse>('/api/technicians'),
   notifications: () => request<NotificationsResponse>('/api/notifications'),
-  maintenance: (params?: { status?: string; limit?: number }) => {
+  maintenance: (params?: {
+    status?: string
+    asset_id?: string
+    zone?: string
+    search?: string
+    limit?: number
+  }) => {
     const qs = new URLSearchParams()
     if (params?.status) qs.set('status', params.status)
+    if (params?.asset_id) qs.set('asset_id', params.asset_id)
+    if (params?.zone) qs.set('zone', params.zone)
+    if (params?.search) qs.set('search', params.search)
     if (params?.limit) qs.set('limit', String(params.limit))
     const suffix = qs.toString() ? `?${qs.toString()}` : ''
     return request<MaintenanceResponse>(`/api/maintenance${suffix}`)
@@ -194,4 +229,5 @@ export const api = {
   tickets: () => request<{ ticket_id: string; asset_id: string; zone: string; priority: string; reason: string; status: string; created_at: string }[]>(
     '/api/tickets',
   ),
+  analytics: () => request<AnalyticsData>('/api/analytics'),
 }

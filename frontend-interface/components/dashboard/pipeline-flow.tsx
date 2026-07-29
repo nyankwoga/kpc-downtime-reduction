@@ -18,28 +18,28 @@ export function PipelineFlow() {
       label: 'Extract',
       value: rowsCleaned != null ? String(fleetOverview?.total_work_orders ?? '–') : '–',
       unit: 'raw rows read',
-      /*note: 'CMMS export',*/
+      note: 'CMMS export',
     },
     {
       key: 'transform',
       label: 'Transform',
       value: rowsCleaned != null ? String(rowsCleaned) : '–',
       unit: 'clean rows',
-      /*note: 'Deduped & normalized',*/
+      note: 'Deduped & normalized',
     },
     {
       key: 'gate',
       label: 'Quality gate',
       value: qualityReport ? `${qualityReport.passed}/${qualityReport.total}` : '–',
       unit: 'checks pass',
-      /*note: 'CI-enforced',*/
+      note: 'CI-enforced',
     },
     {
       key: 'load',
       label: 'Load',
       value: fleetOverview ? String(fleetOverview.total_assets) : '–',
       unit: fleetOverview ? `assets · ${Object.keys(fleetOverview.assets_by_zone).length} zones` : 'assets',
-      /*note: 'Idempotent SQLite',*/
+      note: 'Idempotent load',
     },
   ] as const
 
