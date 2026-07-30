@@ -30,7 +30,7 @@ from pathlib import Path
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import HTMLResponse
+
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -329,7 +329,9 @@ def health():
 # ---------------------------------------------------------------
 # Serve the dashboard UI at "/"
 # ---------------------------------------------------------------
-@app.get("/", response_class=HTMLResponse)
-def dashboard():
-    html_path = Path(__file__).parent / "app_dashboard.html"
-    return html_path.read_text(encoding="utf-8")
+@app.get("/")
+def root():
+    return {
+        "message": "KPC Downtime Reduction API",
+        "status": "running"
+    }
