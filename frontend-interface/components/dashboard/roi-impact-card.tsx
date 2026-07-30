@@ -32,7 +32,7 @@ export function RoiImpactCard() {
             <div>
               <CardTitle className="text-base">Quantified ROI &amp; Executive Business Impact</CardTitle>
               <p className="text-xs text-muted-foreground">
-                Domain B, Problem 4 &middot; Shifting KPC from manual dispatch delay to automated reliability
+                Shifting KPC from manual dispatch delay to automated reliability
               </p>
             </div>
           </div>

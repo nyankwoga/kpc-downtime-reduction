@@ -15,7 +15,7 @@ export function QualityGate() {
         <CardHeader>
           <CardTitle className="text-base">Data quality gate</CardTitle>
           <p className="mt-1 text-sm text-muted-foreground">
-            No pipeline run yet — click &ldquo;Run pipeline now&rdquo; above to fetch live results
+            No pipeline run yet - click &ldquo;Run pipeline now&rdquo; above to fetch live results
             from the backend.
           </p>
         </CardHeader>

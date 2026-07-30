@@ -64,7 +64,7 @@ export function WorkOrdersTable() {
             Work Orders Explorer
           </CardTitle>
           <p className="mt-1 text-sm text-muted-foreground">
-            No maintenance records loaded yet — click &ldquo;Run pipeline now&rdquo; above to fetch live data.
+            No maintenance records loaded yet, click &ldquo;Run pipeline now&rdquo; above to fetch live data.
           </p>
         </CardHeader>
       </Card>

@@ -17,7 +17,7 @@ export function ChronicAssets() {
         <CardHeader>
           <CardTitle className="text-base">Chronic-failure assets</CardTitle>
           <p className="mt-1 text-sm text-muted-foreground">
-            No pipeline run yet — click &ldquo;Run pipeline now&rdquo; above to fetch live results
+            No pipeline run yet - click &ldquo;Run pipeline now&rdquo; above to fetch live results
             from the backend.
           </p>
         </CardHeader>
@@ -49,7 +49,7 @@ export function ChronicAssets() {
         <CardTitle className="text-base">Chronic-failure assets</CardTitle>
         <p className="mt-1 text-sm text-muted-foreground text-pretty">
           Assets raising tickets well above the fleet average of {fleetAvg}. These are the first
-          candidates for condition-based maintenance — actionable signal, not just clean rows.
+          candidates for condition-based maintenance - actionable signal, not just clean rows.
         </p>
       </CardHeader>
       <CardContent className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">

@@ -91,18 +91,7 @@ python build_interactive_dashboard.py
 | 5-minute pitch | build from: problem (memo) -> pipeline demo -> scheduler run -> `scorecard.html` as your visual |
 | Relevance to KPC's specific problem | `etl/insights.py` — chronic-failure asset detection, technician double-booking detection (not generic data-quality checks, genuine operational findings) |
 
-`scorecard.html` is a standalone, self-contained visual summary of all of the above — open it in
-any browser or screenshot it straight into your pitch deck.
 
-`interactive_dashboard.html` is the live-demo version: tabbed view (quality gate / chronic assets
-/ scheduler performance), a clickable chronic-asset list, and a "Replay ticket creation" button
-that animates the actual latency data from your last scheduler run point by point. Data is
-embedded from a real pipeline + scheduler run, not hand-typed. To refresh it with a new run:
-```bash
-python pipeline.py
-python scheduler.py       # with the mock API running
-python build_interactive_dashboard.py
-```
 
 ## Results on the simulated data (sanity check)
 

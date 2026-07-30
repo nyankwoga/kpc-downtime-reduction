@@ -29,19 +29,10 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
-import io
-import pandas as pd
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import HTMLResponse, Response
+from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
-from reportlab.lib.pagesizes import letter
-from reportlab.lib.units import inch
-from reportlab.lib.colors import HexColor
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.enums import TA_LEFT
 
 from etl.extract import extract_work_orders
 from etl.transform import clean_work_orders
@@ -55,10 +46,19 @@ logger = logging.getLogger("app")
 app = FastAPI(title="KPC Downtime Reduction App")
 
 # Allow the Next.js frontend (runs on a different port during development,
-# and possibly a different domain once deployed) to call this API.
+# and a different domain once deployed) to call this API.
+#
+# Set CORS_ORIGINS on the backend host (e.g. Render) to a comma-separated
+# list of the frontend URL(s) that should be allowed to call this API, e.g.
+#   CORS_ORIGINS=https://kpc-downtime.vercel.app,http://localhost:3000
+# Falls back to local dev origins only if the env var isn't set.
+import os
+_default_origins = "http://localhost:3000,http://127.0.0.1:3000"
+allowed_origins = [o.strip() for o in os.environ.get("CORS_ORIGINS", _default_origins).split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -73,7 +73,7 @@ _next_ticket_id = 1
 LATEST_QUALITY_REPORT: Optional[dict] = None
 LATEST_INSIGHTS: Optional[dict] = None
 LATEST_FLEET_OVERVIEW: Optional[dict] = None
-LATEST_ANALYTICS: Optional[dict] = None
+LATEST_RAW_ROWS: Optional[int] = None
 LATEST_CLEAN_DF = None
 MONITORING_LOG: list[dict] = []
 NOTIFICATIONS: list[dict] = []
@@ -117,7 +117,7 @@ def list_tickets():
 # ---------------------------------------------------------------
 @app.post("/api/pipeline/run")
 def run_pipeline_live():
-    global LATEST_QUALITY_REPORT, LATEST_INSIGHTS, LATEST_CLEAN_DF, LATEST_FLEET_OVERVIEW, LATEST_ANALYTICS
+    global LATEST_QUALITY_REPORT, LATEST_INSIGHTS, LATEST_CLEAN_DF
     logger.info("Pipeline run triggered via API")
 
     raw_df = extract_work_orders("raw_work_orders.csv")
@@ -136,124 +136,26 @@ def run_pipeline_live():
         "unassigned_technician_count": int((clean_df["technician"] == "Unassigned").sum()),
     }
 
-    # Advanced Zone & Asset Analytics
-    zone_downtime = {}
-    for zone_name, z_group in clean_df.groupby("zone"):
-        valve_dt = float(z_group[z_group["asset_type"] == "Valve"]["downtime_hours"].sum())
-        pump_dt = float(z_group[z_group["asset_type"] == "Pump"]["downtime_hours"].sum())
-        zone_downtime[zone_name] = {
-            "Valve": round(valve_dt, 1),
-            "Pump": round(pump_dt, 1),
-            "total": round(valve_dt + pump_dt, 1),
-        }
-
-    cleaning_summary = {
-        "dates_corrected": int(getattr(clean_df, "attrs", {}).get("n_impossible_dates_corrected", 0)),
-        "technicians_imputed": int((clean_df["technician"] == "Unassigned").sum()),
-        "duplicates_dropped": int(len(raw_df) - len(raw_df.drop_duplicates("work_order_id"))),
-        "downtime_flagged": int(clean_df["downtime_flagged"].sum()) if "downtime_flagged" in clean_df.columns else 0,
-    }
-
-    total_downtime = float(clean_df["downtime_hours"].sum())
-    overdue_count = int((clean_df["status"] == "Overdue").sum())
-    roi_metrics = {
-        "total_downtime_hours": round(total_downtime, 1),
-        "estimated_hours_saved": round(total_downtime * 0.22, 1),
-        "manual_dispatch_delay_hrs": 36.0,
-        "automated_dispatch_delay_sec": 0.15,
-        "speedup_factor": "99.9%",
-        "overdue_tickets_targeted": overdue_count,
-    }
-
-    analytics = {
-        "zone_downtime": zone_downtime,
-        "cleaning_summary": cleaning_summary,
-        "roi_metrics": roi_metrics,
-        "status_distribution": clean_df["status"].value_counts().to_dict(),
-    }
-
     LATEST_QUALITY_REPORT = quality_report
     LATEST_INSIGHTS = insight_report
     LATEST_CLEAN_DF = clean_df
+    global LATEST_FLEET_OVERVIEW, LATEST_RAW_ROWS
     LATEST_FLEET_OVERVIEW = fleet_overview
-    LATEST_ANALYTICS = analytics
+    LATEST_RAW_ROWS = int(len(raw_df))
 
     return {
-        "quality_report": quality_report,
-        "insights": insight_report,
+        "quality_report": quality_report, "insights": insight_report,
         "fleet_overview": fleet_overview,
-        "analytics": analytics,
-        "rows_cleaned": len(clean_df),
+        "raw_rows": int(len(raw_df)), "rows_cleaned": len(clean_df),
     }
 
 
 @app.get("/api/pipeline/status")
 def pipeline_status():
     return {
-        "quality_report": LATEST_QUALITY_REPORT,
-        "insights": LATEST_INSIGHTS,
-        "fleet_overview": LATEST_FLEET_OVERVIEW,
-        "analytics": LATEST_ANALYTICS,
+        "quality_report": LATEST_QUALITY_REPORT, "insights": LATEST_INSIGHTS,
+        "fleet_overview": LATEST_FLEET_OVERVIEW, "raw_rows": LATEST_RAW_ROWS,
     }
-
-
-@app.get("/api/analytics")
-def get_analytics():
-    _require_pipeline_run()
-    return LATEST_ANALYTICS
-
-
-@app.get("/api/report/pdf")
-def download_executive_pdf():
-    _require_pipeline_run()
-    buffer = io.BytesIO()
-    doc = SimpleDocTemplate(
-        buffer,
-        pagesize=letter,
-        topMargin=0.5 * inch,
-        bottomMargin=0.5 * inch,
-        leftMargin=0.6 * inch,
-        rightMargin=0.6 * inch,
-    )
-    styles = getSampleStyleSheet()
-    title_style = ParagraphStyle("T", parent=styles["Title"], fontSize=16, leading=19, alignment=TA_LEFT)
-    sub_style = ParagraphStyle("S", parent=styles["Normal"], fontSize=9, textColor=HexColor("#555555"), spaceAfter=6)
-    h2_style = ParagraphStyle("H2", parent=styles["Heading2"], fontSize=11, textColor=HexColor("#185fa5"), spaceBefore=8, spaceAfter=4)
-    body_style = ParagraphStyle("B", parent=styles["Normal"], fontSize=9, leading=12, spaceAfter=4)
-
-    story = []
-    story.append(Paragraph("KPC Downtime Reduction — Executive Report", title_style))
-    story.append(Paragraph("Domain B: Problem 4 &nbsp;|&nbsp; Automated Maintenance Dispatch &amp; Quality Audit", sub_style))
-    story.append(HRFlowable(width="100%", thickness=1, color=HexColor("#185fa5"), spaceAfter=8))
-
-    # Audit summary
-    story.append(Paragraph("1. Data Quality Gate Audit Evidence", h2_style))
-    story.append(Paragraph(f"• <b>Raw Work Orders Processed</b>: 615 records | <b>Cleaned Loaded</b>: 600 records", body_style))
-    story.append(Paragraph(f"• <b>Quality Gate Status</b>: PASS ({LATEST_QUALITY_REPORT['passed']}/{LATEST_QUALITY_REPORT['total']} checks passed)", body_style))
-    story.append(Paragraph(f"• <b>Unassigned Technician Imputations</b>: {LATEST_ANALYTICS['cleaning_summary']['technicians_imputed']} records standardized", body_style))
-    story.append(Paragraph(f"• <b>Date Format / Sequence Errors Corrected</b>: {LATEST_ANALYTICS['cleaning_summary']['dates_corrected']} records", body_style))
-
-    # ROI Summary
-    story.append(Paragraph("2. Quantified Business ROI &amp; Dispatch Acceleration", h2_style))
-    story.append(Paragraph(f"• <b>Dispatch Latency Acceleration</b>: Manual 36h delay &rarr; Automated &lt;0.2s (99.9% speedup)", body_style))
-    story.append(Paragraph(f"• <b>Monthly Downtime Hours Avoided</b>: ~{LATEST_ANALYTICS['roi_metrics']['estimated_hours_saved']} hours across overdue work orders", body_style))
-    story.append(Paragraph(f"• <b>Estimated Annual Value Generated</b>: ~KES 70,000,000+ ($539,000+) in outage avoidance", body_style))
-
-    # Chronic Assets
-    story.append(Paragraph("3. Chronic Bad-Actor Asset Analysis", h2_style))
-    chronic_assets = (LATEST_INSIGHTS["chronic_assets"][:5]) if LATEST_INSIGHTS and "chronic_assets" in LATEST_INSIGHTS else []
-    chronic_str = ", ".join([f"{a['asset_id']} ({a['multiplier_vs_fleet_average']}x avg)" for a in chronic_assets])
-    story.append(Paragraph(f"• <b>Top Chronic Failure Assets</b>: {chronic_str}", body_style))
-    story.append(Paragraph("• <i>Recommendation</i>: Target these 5 valves/pumps for condition-based maintenance to eliminate 40% of failures.", body_style))
-
-    doc.build(story)
-    pdf_bytes = buffer.getvalue()
-    buffer.close()
-    return Response(
-        content=pdf_bytes,
-        media_type="application/pdf",
-        headers={"Content-Disposition": "attachment; filename=KPC_Downtime_Reduction_Executive_Report.pdf"},
-    )
 
 
 # ---------------------------------------------------------------
@@ -284,50 +186,13 @@ def list_equipment():
 
 
 @app.get("/api/maintenance")
-def list_maintenance(
-    status: Optional[str] = None,
-    asset_id: Optional[str] = None,
-    zone: Optional[str] = None,
-    search: Optional[str] = None,
-    limit: int = 600,
-):
+def list_maintenance(status: Optional[str] = None, limit: int = 100):
     _require_pipeline_run()
-    df = LATEST_CLEAN_DF.copy()
-    if status and status.lower() != "all":
+    df = LATEST_CLEAN_DF
+    if status:
         df = df[df["status"].str.lower() == status.lower()]
-    if asset_id and asset_id.lower() != "all":
-        df = df[df["asset_id"].str.lower() == asset_id.lower()]
-    if zone and zone.lower() != "all":
-        df = df[df["zone"].str.lower() == zone.lower()]
-    if search:
-        s = search.strip().lower()
-        notes_str = df["notes"].fillna("").astype(str).str.lower()
-        wo_str = df["work_order_id"].astype(str).str.lower()
-        asset_str = df["asset_id"].astype(str).str.lower()
-        tech_str = df["technician"].astype(str).str.lower()
-        df = df[wo_str.str.contains(s) | asset_str.str.contains(s) | tech_str.str.contains(s) | notes_str.str.contains(s)]
-
-    # Format datetime columns to string
-    for col in ["reported_time", "scheduled_time", "completed_time"]:
-        if col in df.columns:
-            df[col] = df[col].apply(lambda x: x.strftime("%Y-%m-%d %H:%M") if pd.notna(x) else None)
-
-    cols = [
-        "work_order_id",
-        "asset_id",
-        "asset_type",
-        "zone",
-        "reported_time",
-        "scheduled_time",
-        "completed_time",
-        "status",
-        "technician",
-        "downtime_hours",
-        "sla_hours",
-        "notes",
-    ]
-    available_cols = [c for c in cols if c in df.columns]
-    records = df[available_cols].head(limit).to_dict(orient="records")
+    cols = ["work_order_id", "asset_id", "zone", "status", "technician", "downtime_hours", "sla_hours"]
+    records = df[cols].head(limit).to_dict(orient="records")
     for r in records:
         for k, v in r.items():
             if isinstance(v, float) and math.isnan(v):

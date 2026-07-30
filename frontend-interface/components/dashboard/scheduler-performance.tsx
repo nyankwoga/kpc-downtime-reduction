@@ -124,7 +124,7 @@ export function SchedulerPerformance() {
       <Card>
         <CardHeader className="flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <CardTitle className="text-base">Scheduler run — latency per ticket</CardTitle>
+            <CardTitle className="text-base">Scheduler run - latency per ticket</CardTitle>
             <p className="mt-1 text-sm text-muted-foreground text-pretty">
               Every real API call from the last run, in order. Orange points needed a retry.
             </p>

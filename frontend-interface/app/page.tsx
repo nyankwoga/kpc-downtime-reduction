@@ -11,7 +11,7 @@ export default function Page() {
         <section className="space-y-2 rounded-xl border bg-card p-4 sm:p-6">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
-              Inuka Hackathon &middot; Domain B: Problem 4 &middot; Downtime Reduction
+              
             </span>
             <span className="text-xs font-mono text-muted-foreground">Kenya Pipeline Company (KPC)</span>
           </div>
